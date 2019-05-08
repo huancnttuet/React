@@ -35,16 +35,23 @@ app.get('/test', async (req, res) => {
   });
 })
 
-app.post('/login', (req, res) => {
-  console.log(req.body)
-  res.json({rep:'OKKK'})
+app.post('/login', async (req, res) => {
+  var usernameSignIn = req.body.data.usernameSignIn
+  var pwdSignIn = req.body.data.pwdSignIn
+  if(await data.checkSignIn(usernameSignIn, pwdSignIn)){
+    console.log('login true');
+    res.json({login: true})
+  }else {
+    console.log('login false');
+    res.json({login: false})
+  }
 })
 
 app.post('/signup', async (req, res) => {
   var usernameSignUp = req.body.data.usernameSignUp
   var emailSignUp = req.body.data.emailSignUp
   var pwdSignUp = req.body.data.pwdSignUp
-  if(await data.queryUser(emailSignUp, usernameSignUp)){
+  if(await data.checkSignUp(emailSignUp, usernameSignUp)){
     if(await data.createUser(emailSignUp, usernameSignUp, pwdSignUp)){
       res.json({message:'create new user success '})
     }else {

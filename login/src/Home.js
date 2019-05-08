@@ -16,7 +16,6 @@ function Home(props) {
   else
     return(
       <div>
-        <TopPage />
         <SignIn />
       </div>
     )
