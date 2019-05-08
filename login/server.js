@@ -17,22 +17,22 @@ app.get('/test', async (req, res) => {
     user: 'huancnttuet@gmail.com',
     pass: '341997mok'
   }
-});
+  });
 
-var mailOptions = {
+  var mailOptions = {
   from: 'huancnttuet@gmail.com',
   to: 'huancnttmta@gmail.com',
   subject: 'Sending Email using Node.js',
   text: 'That was easy!'
-};
+  };
 
-transporter.sendMail(mailOptions, function(error, info){
-  if (error) {
-    console.log(error);
-  } else {
-    console.log('Email sent: ' + info.response);
-  }
-});
+  transporter.sendMail(mailOptions, function(error, info){
+    if (error) {
+      console.log(error);
+    } else {
+      console.log('Email sent: ' + info.response);
+    }
+  });
 })
 
 app.post('/login', (req, res) => {
