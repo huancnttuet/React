@@ -10,8 +10,7 @@ export default function TopPage() {
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mr-auto">
             <Nav.Link href="http://localhost:3000">Home</Nav.Link>
-            <Nav.Link href="http://localhost:3000/signin">Signin</Nav.Link>
-            <Nav.Link href="http://localhost:3000/signup">Signup</Nav.Link>
+
             <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
@@ -21,10 +20,8 @@ export default function TopPage() {
             </NavDropdown>
           </Nav>
           <Nav>
-            <Nav.Link href="#deets">More deets</Nav.Link>
-            <Nav.Link eventKey={2} href="#memes">
-              Dank memes
-            </Nav.Link>
+            <Nav.Link href="http://localhost:3000/signin">Signin</Nav.Link>
+            <Nav.Link href="http://localhost:3000/signup">Signup</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
