@@ -1,12 +1,12 @@
 import React, {useState} from 'react';
 import SignIn from './SignIn'
 import TopPage from './TopPage'
-
+import {connect} from 'react-redux'
 
 
 function Home(props) {
-  const [authenticate, setAuthenticate] = useState(false)
-  if(authenticate)
+  console.log(props);
+  if(props.authenticate)
     return(
       <div>
         <TopPage />
@@ -20,4 +20,9 @@ function Home(props) {
       </div>
     )
 }
-export default Home
+
+const mapStateToProps = state => ({
+  authenticate: state.authenticate
+})
+
+export default connect(mapStateToProps)(Home)

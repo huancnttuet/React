@@ -1,11 +1,30 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './css/index.css';
-import App from './App';
+import './components/css/index.css';
+import App from './components/App';
 import * as serviceWorker from './serviceWorker';
+import {createStore} from  'redux';
+import {Provider} from 'react-redux';
 
+const rootReducer = (state = {authenticate: false}, action) => {
+  switch (action.type) {
+    case 'LOGIN':
+      return { authenticate: true }
+      break;
+    case 'LOGOUT':
+     return { authenticate: false }
+    default:
+      return state
+  }
+}
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const store = createStore(rootReducer)
+
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>
+, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

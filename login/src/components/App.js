@@ -7,6 +7,8 @@ import Home from './Home'
 import SignIn from './SignIn'
 import SignUp from './SignUp'
 
+
+
 function App() {
   return (
     <Router>
@@ -15,7 +17,7 @@ function App() {
 
          <div >
            <Route exact path="/" component={Home} />
-           <Route path="/signin/:id" component={SignIn} />
+           <Route path="/signin" component={SignIn} />
            <Route path="/signup" component={SignUp} />
          </div>
        </div>

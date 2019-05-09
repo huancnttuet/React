@@ -1,11 +1,13 @@
 import React,{useState, useEffect} from 'react'
 import {Form, Button, Col, Row, Container} from 'react-bootstrap'
 import axios from 'axios'
+import { connect } from 'react-redux'
 
-export default function SignIn(props) {
+
+function SignIn(props) {
   const username = useFormInput('')
   const pwd = useFormInput('')
-  const [stateLogin , setStateLogin] = useState(false)
+
   console.log(props);
   function handleClick() {
     var data = {
@@ -16,11 +18,11 @@ export default function SignIn(props) {
     axios.post('http://localhost:8000/login', {data}).then((res) => {
       console.log(res.data.login);
       if(res.data.login){
-        setStateLogin(true);
+        props.dispatch({type: 'LOGIN'})
       }
     })
   }
-  if(stateLogin == true){
+  if(props.authenticate === true){
     return (
       <div>
         <h1>CHÀO MỪNG BẠN =))</h1>
@@ -71,5 +73,10 @@ function useFormInput(initial){
     value,
     onChange: handleChange
   }
-
 }
+
+const mapStateToProps = state => ({
+  authenticate: state.authenticate
+})
+
+export default connect(mapStateToProps)(SignIn)
