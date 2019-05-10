@@ -30,6 +30,14 @@ test('the shopping list has beer on it', () => {
   expect(new Set(shoppingList)).toContain('beer');
 });
 
-function compileAndroidCode() {
-  throw new ConfigError('you are using the wrong JDK');
-}
+import axios from 'axios'
+
+test('the data is peanut butter', () => {
+  const data = {
+    usernameSignIn: 'huan123',
+    pwdSignIn: 1
+  }
+  return axios.post('http://localhost:8000/signin',{data}).then(data => {
+    expect(data.data).toMatchObject({login:true});
+  });
+});
