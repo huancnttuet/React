@@ -4,14 +4,21 @@ var app = express();
 var cors = require('cors')
 var data = require('./data/data.js')
 var nodemailer = require('nodemailer');
+var crypto = require('crypto');
 
 //Here we are configuring express to use body-parser as middle-ware.
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors())
 
+const md5 = () => {
+  var mykey = crypto.createCipher('aes-128-cbc', 'mypassword');
+  var mystr = mykey.update('abc', 'utf8', 'hex')
+  mystr += mykey.update.final('hex');
+  }
+
 app.get('/test', async (req, res) => {
-  console.log(await data.checkSignIn('huancnttuet', '1'))
+  res.json({huan:'huan'})
 })
 
 app.post('/signin', async (req, res) => {

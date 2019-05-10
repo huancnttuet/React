@@ -30,7 +30,7 @@ function SignIn(props) {
     return (
       <div>
         <TopPage type='logout' />
-        <h1>CHÀO MỪNG BẠN =))</h1>
+        <h1>CHÀO MỪNG BẠN </h1>
       </div>
     )
   }
@@ -39,8 +39,10 @@ function SignIn(props) {
       <div>
         <TopPage type='signin' />
         <Container>
-          <Row>
+          <Row style={{marginTop:50}}>
             <Col>
+            </Col>
+            <Col >
               <Form>
                 <Form.Group controlId="formBasicUsername" {...username}>
                   <Form.Label>Username</Form.Label>
@@ -63,6 +65,8 @@ function SignIn(props) {
                 <p>{message}</p>
                 <a href='http://localhost:3000/forgottenacc'>Forgotten account?</a>
               </Form>
+            </Col>
+            <Col>
             </Col>
           </Row>
         </Container>

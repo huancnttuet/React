@@ -25,24 +25,27 @@ function ForgottenAcc(props) {
     <div>
       <TopPage type='signin' />
       <Container>
-        <Row>
-          <Form>
-            <Form.Row>
-              <Form.Group as={Col} controlId="emailFA" {...emailFA}>
-                <Form.Label>Email</Form.Label>
-                <Form.Control type="email" placeholder="Enter email" />
-              </Form.Group>
-            </Form.Row>
+        <Row style={{marginTop:50}}>
+          <Col></Col>
+          <Col>
+            <Form>
+              <Form.Row>
+                <Form.Group as={Col} controlId="emailFA" {...emailFA}>
+                  <Form.Label>Email</Form.Label>
+                  <Form.Control type="email" placeholder="Enter email" />
+                </Form.Group>
+              </Form.Row>
 
 
-            <span>{stateFA}</span>
+              <span>{stateFA}</span>
 
 
-            <Button variant="primary" onClick={handleClick}>
-              Submit
-            </Button>
-          </Form>
-
+              <Button variant="primary" onClick={handleClick}>
+                Submit
+              </Button>
+            </Form>
+          </Col>
+          <Col></Col>
         </Row>
 
       </Container>

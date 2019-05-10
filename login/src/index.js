@@ -36,7 +36,7 @@ const rootReducer = (state = initial ,action ) => {
       localStorage.setItem("authenticate",true)
       localStorage.setItem("id", action.payload)
       return { authenticate: true , id: action.payload}
-      break;
+      
     case 'LOGOUT':
       localStorage.clear()
      return { authenticate: false , id: 0}

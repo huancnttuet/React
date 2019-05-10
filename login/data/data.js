@@ -27,7 +27,7 @@ module.exports = {
   createUser: async function (emailSignUp, usernameSignUp, pwdSignUp) {
     var createUser = await sequelize.query(`INSERT INTO user(email,username,pwd) VALUES('${emailSignUp}','${usernameSignUp}','${pwdSignUp}') `).then(result => {
       console.log(result);
-      if(result[0] === 0 && result[1] === 1)
+      if(result[1] === 1)
         return true;
       return false
     })

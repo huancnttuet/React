@@ -30,14 +30,14 @@ function SignUp(props) {
     return true
   }
 
-
-
   return(
     <div>
       <TopPage type='signin' />
       <Container>
-        <Row>
-          <Form>
+        <Row style={{marginTop:50}}>
+          <Col></Col>
+          <Col>
+            <Form>
             <Form.Row>
               <Form.Group as={Col} controlId="emailSignUp" {...emailSignUp}>
                 <Form.Label>Email</Form.Label>
@@ -62,9 +62,9 @@ function SignUp(props) {
               Submit
             </Button>
           </Form>
-
+          </Col>
+          <Col></Col>
         </Row>
-
       </Container>
     </div>
 

@@ -42,7 +42,8 @@ function ChangePwd(props) {
     <div>
       <TopPage type='logout' />
       <Container>
-        <Row>
+        <Row style={{marginTop:50}}>
+          <Col></Col>
           <Col>
             <Form>
               <Form.Group controlId="formBasicChangePwd" {...pwd}>
@@ -66,6 +67,7 @@ function ChangePwd(props) {
             </Form>
             <p>{message}</p>
           </Col>
+          <Col></Col>
         </Row>
       </Container>
     </div>
