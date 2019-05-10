@@ -1,26 +1,22 @@
 import React, {useState} from 'react';
 import {Form, Button, Col, Row, Container} from 'react-bootstrap'
 import axios from 'axios'
+import TopPage from './TopPage'
 
 function SignUp(props) {
   const emailSignUp = useFormInput('')
   const usernameSignUp = useFormInput('')
-  const pwdSignUp = useFormInput('')
-  const rePwdSignUp = useFormInput('')
+
   const [stateSignUp, setStateSignUp] = useState('')
 
   function handleClick() {
 
-    if(!checkPwd()){
-      setStateSignUp('errorPwd')
-    } else if(!checkUsername()) {
+    if(!checkUsername()) {
       setStateSignUp('errorUsername')
     } else {
       var data = {
         emailSignUp: emailSignUp.value,
-        usernameSignUp: usernameSignUp.value,
-        pwdSignUp: pwdSignUp.value,
-        rePwdSignUp: rePwdSignUp.value
+        usernameSignUp: usernameSignUp.value
       }
       axios.post('http://localhost:8000/signup', {data}).then( (res) => {
         setStateSignUp(res.data.message)
@@ -34,51 +30,43 @@ function SignUp(props) {
     return true
   }
 
-  function checkPwd() {
-    if(pwdSignUp.value === rePwdSignUp.value)
-      return true
-    return false
-  }
+
 
   return(
-    <Container>
-      <Row>
-        <Form>
-          <Form.Row>
-            <Form.Group as={Col} controlId="emailSignUp" {...emailSignUp}>
-              <Form.Label>Email</Form.Label>
-              <Form.Control type="email" placeholder="Enter email" />
+    <div>
+      <TopPage type='signin' />
+      <Container>
+        <Row>
+          <Form>
+            <Form.Row>
+              <Form.Group as={Col} controlId="emailSignUp" {...emailSignUp}>
+                <Form.Label>Email</Form.Label>
+                <Form.Control type="email" placeholder="Enter email" />
+              </Form.Group>
+            </Form.Row>
+            <Form.Row>
+              <Form.Group as={Col} controlId="usernameSignUp" {...usernameSignUp}>
+                <Form.Label>Username</Form.Label>
+                <Form.Control placeholder="Enter username" />
+              </Form.Group>
+            </Form.Row>
+
+
+            <span>{stateSignUp}</span>
+
+            <Form.Group id="formGridCheckbox">
+              <Form.Check type="checkbox" label="Check me out" />
             </Form.Group>
 
-            <Form.Group as={Col} controlId="usernameSignUp" {...usernameSignUp}>
-              <Form.Label>Username</Form.Label>
-              <Form.Control placeholder="Enter username" />
-            </Form.Group>
-          </Form.Row>
+            <Button variant="primary" onClick={handleClick}>
+              Submit
+            </Button>
+          </Form>
 
-          <Form.Group controlId="pwdSignUp" {...pwdSignUp}>
-            <Form.Label>Password</Form.Label>
-            <Form.Control type="password"  placeholder="" />
-          </Form.Group>
+        </Row>
 
-          <Form.Group controlId="rePwdSignUp" {...rePwdSignUp}>
-            <Form.Label>RePassword</Form.Label>
-            <Form.Control type="password"  placeholder="" />
-          </Form.Group>
-          <span>{stateSignUp}</span>
-
-          <Form.Group id="formGridCheckbox">
-            <Form.Check type="checkbox" label="Check me out" />
-          </Form.Group>
-
-          <Button variant="primary" onClick={handleClick}>
-            Submit
-          </Button>
-        </Form>
-
-      </Row>
-
-  </Container>
+      </Container>
+    </div>
 
   )
 }

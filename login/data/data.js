@@ -34,14 +34,45 @@ module.exports = {
     return createUser
   },
   checkSignIn: async function (usernameSignIn, pwdSignIn) {
-    var checkSignIn = await sequelize.query(`SELECT COUNT(username) AS username FROM user WHERE pwd='${pwdSignIn}' AND username='${usernameSignIn}'`).then(result => {
-      if(result[0][0].username == 1){
+    var id = await sequelize.query(`SELECT id,username FROM user WHERE pwd='${pwdSignIn}' AND username='${usernameSignIn}'`).then(result => {
+      console.log(result);
+
+      if(result[0][0] != null){
+        return result[0][0]
+      }
+      return 0
+    })
+    return id;
+  },
+  changePwd: async function (id, pwd){
+    var updatePwd = await sequelize.query(`UPDATE user SET pwd='${pwd}' WHERE id='${id}'`).then(result => {
+      if(result[0].changedRows === 1){
         return true
       }
       return false
     })
-    return checkSignIn;
+    return updatePwd
+  },
+  checkIdPwd: async function ( id, pwd) {
+    var rs = await sequelize.query(`SELECT id FROM user WHERE pwd='${pwd}' AND id='${id}'`).then(result => {
+      console.log(result);
+
+      if(result[0][0] != null){
+        return true
+      }
+      return false
+    })
+    return rs;
+  },
+  checkEmailFA: async function ( emailFA ) {
+    var pwd = await sequelize.query(`SELECT pwd FROM user WHERE email='${emailFA}'`).then(result => {
+      console.log(result);
+
+      if(result[0][0] != null){
+        return result[0][0].pwd
+      }
+      return null
+    })
+    return pwd
   }
-
-
 }
