@@ -1,12 +1,13 @@
 import React from 'react';
 import SignIn from './SignIn'
 import TopPage from './TopPage'
-import {connect} from 'react-redux'
+import {useGlobal} from 'reactn'
 
 
 function Home(props) {
-  console.log(props);
-  if(props.authenticate === 'true'){
+  const [authenticate, setAuthenticate] = useGlobal('authenticate')
+  console.log(authenticate);
+  if(authenticate === 'true'){
     return(
       <div>
         <TopPage type='logout' />
@@ -24,9 +25,5 @@ function Home(props) {
   }
 }
 
-const mapStateToProps = state => ({
-  authenticate: state.authenticate,
-  id: state.id
-})
 
-export default connect(mapStateToProps)(Home)
+export default Home

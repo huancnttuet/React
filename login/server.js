@@ -18,7 +18,10 @@ const md5 = () => {
   }
 
 app.get('/test', async (req, res) => {
-  res.json({huan:'huan'})
+  var value = await data.test('dasdas','huanhuan12314141')
+  res.json({value: value})
+  console.log(value);
+
 })
 
 app.post('/signin', async (req, res) => {

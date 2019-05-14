@@ -1,29 +1,14 @@
 {
-  "name": "login",
+  "name": "test_reactn",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "axios": "^0.18.0",
-    "body-parser": "^1.19.0",
-    "bootstrap": "^4.3.1",
-    "cors": "^2.8.5",
-    "express": "^4.16.4",
-    "html-webpack-deploy-plugin": "^2.0.6",
-    "jest": "^24.8.0",
-    "mailgun-js": "^0.22.0",
-    "mysql2": "^1.6.5",
-    "nodemailer": "^6.1.1",
     "react": "^16.8.6",
-    "react-bootstrap": "^1.0.0-beta.8",
     "react-dom": "^16.8.6",
     "react-redux": "^7.0.3",
-    "react-router-dom": "^5.0.0",
-    "react-script": "^2.0.5",
-    "react-scripts": "3.0.0",
-    "react-timeout": "^1.2.0",
+    "react-scripts": "3.0.1",
     "reactn": "^2.0.0",
-    "redux": "^4.0.1",
-    "sequelize": "^5.8.2"
+    "redux": "^4.0.1"
   },
   "scripts": {
     "start": "react-scripts start",

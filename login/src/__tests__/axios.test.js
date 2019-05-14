@@ -32,12 +32,9 @@ test('the shopping list has beer on it', () => {
 
 import axios from 'axios'
 
-test('the data is peanut butter', () => {
-  const data = {
-    usernameSignIn: 'huan123',
-    pwdSignIn: 1
-  }
-  return axios.post('http://localhost:8000/signin',{data}).then(data => {
-    expect(data.data).toMatchObject({login:true});
+test('test ORM', () => {
+  
+  return axios.get('http://localhost:8000/test').then(data => {
+    expect(data.value).toMatchObject({login:true});
   });
 });

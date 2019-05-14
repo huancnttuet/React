@@ -1,10 +1,12 @@
 import React from 'react';
 import {Navbar, Nav, NavDropdown} from 'react-bootstrap'
-import { connect } from 'react-redux'
+import {useGlobal} from 'reactn'
 
 
 function TopPage(props) {
-    const pathHome=`http://localhost:3000/${props.id}`
+    const [global, setGlobal] = useGlobal()
+
+    const pathHome=`http://localhost:3000/${global.id}`
     const pathChangePwd = `${pathHome}/changepwd`
 
     if(props.type === 'logout'){
@@ -26,7 +28,10 @@ function TopPage(props) {
               </NavDropdown>
             </Nav>
             <Nav>
-              <Nav.Link href="http://localhost:3000/" onClick={() => props.dispatch({type: 'LOGOUT'})}>Logout</Nav.Link>
+              <Nav.Link href="http://localhost:3000/" onClick={() => setGlobal(state => ({
+                  authenticate: false,
+                  id: 0
+                }))}>Logout</Nav.Link>
               <Nav.Link href={pathChangePwd}>Change Password</Nav.Link>
             </Nav>
           </Navbar.Collapse>
@@ -63,9 +68,5 @@ function TopPage(props) {
 
 }
 
-const mapStateToProps = state => ({
-  authenticate: state.authenticate,
-  id: state.id
-})
 
-export default connect(mapStateToProps)(TopPage)
+export default TopPage

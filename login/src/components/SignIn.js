@@ -1,15 +1,20 @@
-import React,{useState} from 'react'
+import React,{useState, useDispatch, addReducer, useReducer, useContext} from 'react'
 import {Form, Button, Col, Row, Container} from 'react-bootstrap'
 import axios from 'axios'
-import { connect } from 'react-redux'
+import {useGlobal} from 'reactn'
 import TopPage from './TopPage'
+import Context from './Context'
 
 function SignIn(props) {
+  const [global, setGlobal] = useGlobal()
+
   const username = useFormInput('')
   const pwd = useFormInput('')
   const [message, setMessage] = useState('')
+  const [state, dispatch] = useContext(Context)
 
-  console.log(props);
+
+  console.log(global);
   function handleClick() {
     var data = {
       usernameSignIn: username.value,
@@ -19,14 +24,15 @@ function SignIn(props) {
     axios.post('http://localhost:8000/signin', {data}).then((res) => {
       console.log(res.data.login);
       if(res.data.login){
-        props.dispatch({type: 'LOGIN', payload: res.data.id})
+          dispatch({type:'LOGIN', payload: res.data.id})
       } else {
         setMessage(res.data.message)
       }
     })
-  }
 
-  if(props.authenticate === true){
+  }
+  console.log(state.authenticate);
+  if(state.authenticate === true){
     return (
       <div>
         <TopPage type='logout' />
@@ -90,8 +96,6 @@ function useFormInput(initial){
   }
 }
 
-const mapStateToProps = state => ({
-  authenticate: state.authenticate
-})
 
-export default connect(mapStateToProps)(SignIn)
+
+export default SignIn

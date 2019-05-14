@@ -2,11 +2,10 @@ import React, {useState} from 'react';
 import TopPage from './TopPage'
 import {Form, Button, Col, Row, Container} from 'react-bootstrap'
 import axios from 'axios'
-import {connect} from 'react-redux'
-
+import {useGlobal} from 'reactn'
 
 function ChangePwd(props) {
-
+  const [global, setGlobal] = useGlobal()
   const pwd = useFormInput('')
   const newPwd = useFormInput('')
   const reNewPwd = useFormInput('')
@@ -24,7 +23,7 @@ function ChangePwd(props) {
           setMessage('password không khớp nhau')
         } else {
           var data = {
-            id: props.id,
+            id: global.id,
             pwd: pwd.value,
             pwdNew: newPwd.value
           }
@@ -87,8 +86,5 @@ function useFormInput(initial){
   }
 }
 
-const mapStateToProps = state => ({
-  id: state.id
-})
 
-export default connect(mapStateToProps)(ChangePwd)
+export default ChangePwd
