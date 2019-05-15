@@ -7,12 +7,9 @@ import Context from './Context'
 
 function SignIn(props) {
   const [global, setGlobal] = useGlobal()
-
   const username = useFormInput('')
   const pwd = useFormInput('')
   const [message, setMessage] = useState('')
-  const [state, dispatch] = useContext(Context)
-
 
   console.log(global);
   function handleClick() {
@@ -24,15 +21,18 @@ function SignIn(props) {
     axios.post('http://localhost:8000/signin', {data}).then((res) => {
       console.log(res.data.login);
       if(res.data.login){
-          dispatch({type:'LOGIN', payload: res.data.id})
+          global.dispatch({
+            type: 'LOGIN',
+            payload: res.data.id
+          })
       } else {
         setMessage(res.data.message)
       }
     })
 
   }
-  console.log(state.authenticate);
-  if(state.authenticate === true){
+  console.log(global.state.authenticate);
+  if(global.state.authenticate === true){
     return (
       <div>
         <TopPage type='logout' />
@@ -47,6 +47,7 @@ function SignIn(props) {
         <Container>
           <Row style={{marginTop:50}}>
             <Col>
+              {props.authenticate}
             </Col>
             <Col >
               <Form>

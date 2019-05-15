@@ -6,7 +6,7 @@ import {useGlobal} from 'reactn'
 function TopPage(props) {
     const [global, setGlobal] = useGlobal()
 
-    const pathHome=`http://localhost:3000/${global.id}`
+    const pathHome=`http://localhost:3000/${global.state.id}`
     const pathChangePwd = `${pathHome}/changepwd`
 
     if(props.type === 'logout'){
@@ -28,10 +28,7 @@ function TopPage(props) {
               </NavDropdown>
             </Nav>
             <Nav>
-              <Nav.Link href="http://localhost:3000/" onClick={() => setGlobal(state => ({
-                  authenticate: false,
-                  id: 0
-                }))}>Logout</Nav.Link>
+              <Nav.Link href="http://localhost:3000/" onClick={() => global.dispatch({type:'LOGOUT'})}>Logout</Nav.Link>
               <Nav.Link href={pathChangePwd}>Change Password</Nav.Link>
             </Nav>
           </Navbar.Collapse>

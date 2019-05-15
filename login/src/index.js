@@ -25,14 +25,8 @@ if (setupTime == null) {
     }
 }
 
-setGlobal({
-  authenticate: localStorage.getItem("authenticate"),
-  id : localStorage.getItem("id")
-})
 
 
-console.log(localStorage.getItem("authenticate"));
-console.log(localStorage.getItem("id"));
 
 ReactDOM.render(
 

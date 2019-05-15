@@ -5,9 +5,9 @@ import {useGlobal} from 'reactn'
 
 
 function Home(props) {
-  const [authenticate, setAuthenticate] = useGlobal('authenticate')
-  console.log(authenticate);
-  if(authenticate === 'true'){
+  const [global, setGlobal] = useGlobal()
+  console.log(global);
+  if(global.state.authenticate){
     return(
       <div>
         <TopPage type='logout' />
