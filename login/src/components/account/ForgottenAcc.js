@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Form, Button, Col, Row, Container} from 'react-bootstrap'
 import axios from 'axios'
-import TopPage from './TopPage'
+import TopPage from '../TopPage'
 
 function ForgottenAcc(props) {
   const emailFA = useFormInput('')
@@ -23,7 +23,7 @@ function ForgottenAcc(props) {
 
   return(
     <div>
-      <TopPage type='signin' />
+    
       <Container>
         <Row style={{marginTop:50}}>
           <Col></Col>

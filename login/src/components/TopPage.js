@@ -4,10 +4,16 @@ import { connect } from 'react-redux'
 
 
 function TopPage(props) {
-    const pathHome=`http://localhost:3000/${props.id}`
+    var pathHome
+    if(props.id === null){
+      pathHome=`http://localhost:3000/home`
+    } else {
+      pathHome=`http://localhost:3000/home/${props.id}`
+    }
+
     const pathChangePwd = `${pathHome}/changepwd`
 
-    if(props.type === 'logout'){
+    if(props.type){
       return (
         <div>
           <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -26,7 +32,7 @@ function TopPage(props) {
               </NavDropdown>
             </Nav>
             <Nav>
-              <Nav.Link href="http://localhost:3000/" onClick={() => props.dispatch({type: 'LOGOUT'})}>Logout</Nav.Link>
+              <Nav.Link href="http://localhost:3000/home" onClick={() => props.dispatch({type: 'LOGOUT'})}>Logout</Nav.Link>
               <Nav.Link href={pathChangePwd}>Change Password</Nav.Link>
             </Nav>
           </Navbar.Collapse>
@@ -52,7 +58,7 @@ function TopPage(props) {
               </NavDropdown>
             </Nav>
             <Nav>
-              <Nav.Link href="http://localhost:3000/">Signin</Nav.Link>
+              <Nav.Link href="http://localhost:3000/signin">Signin</Nav.Link>
               <Nav.Link href="http://localhost:3000/signup">Signup</Nav.Link>
             </Nav>
           </Navbar.Collapse>

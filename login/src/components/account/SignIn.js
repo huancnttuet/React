@@ -2,7 +2,7 @@ import React,{useState} from 'react'
 import {Form, Button, Col, Row, Container} from 'react-bootstrap'
 import axios from 'axios'
 import { connect } from 'react-redux'
-import TopPage from './TopPage'
+import TopPage from '../TopPage'
 
 function SignIn(props) {
   const username = useFormInput('')
@@ -29,7 +29,7 @@ function SignIn(props) {
   if(props.authenticate === true){
     return (
       <div>
-        <TopPage type='logout' />
+
         <h1>CHÀO MỪNG BẠN </h1>
       </div>
     )
@@ -37,7 +37,7 @@ function SignIn(props) {
   else {
     return(
       <div>
-        <TopPage type='signin' />
+        
         <Container>
           <Row style={{marginTop:50}}>
             <Col>
