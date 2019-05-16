@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import TopPage from './TopPage'
+import TopPage from '../TopPage'
 import {Form, Button, Col, Row, Container} from 'react-bootstrap'
 import axios from 'axios'
 import {connect} from 'react-redux'
@@ -40,7 +40,7 @@ function ChangePwd(props) {
 
   return (
     <div>
-      <TopPage type='logout' />
+      
       <Container>
         <Row style={{marginTop:50}}>
           <Col></Col>

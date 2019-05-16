@@ -1,6 +1,6 @@
 import React from 'react';
-import SignIn from './SignIn'
-import TopPage from './TopPage'
+import Content from './tour/Content'
+
 import {connect} from 'react-redux'
 
 
@@ -9,8 +9,8 @@ function Home(props) {
   if(props.authenticate === 'true'){
     return(
       <div>
-        <TopPage type='logout' />
         MyHome
+
       </div>
       )
   }
@@ -18,7 +18,7 @@ function Home(props) {
     return(
       <div>
 
-        <SignIn />
+        <Content />
       </div>
     )
   }

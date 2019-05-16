@@ -3,9 +3,11 @@ var bodyParser = require("body-parser");
 var app = express();
 var cors = require('cors')
 var data = require('./data/data.js')
+var tour = require('./data/tour.js')
+var crud = require('./data/CRUD.js')
 var nodemailer = require('nodemailer');
 var crypto = require('crypto');
-
+var multer = require('multer')
 //Here we are configuring express to use body-parser as middle-ware.
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -143,6 +145,167 @@ app.post('/forgottenacc', async (req, res) => {
   }
 })
 
+app.get('/getList', async (req, res) => {
+  var list = await tour.getList()
+  console.log(list);
+  res.json({list:list[0]})
+})
+
+app.post('/getListTour', async (req, res) => {
+  const id = req.body.data.id
+  var list = await tour.getListTour(id)
+  res.json({list:list[0]})
+})
+
+app.post('/detail', async (req, res) => {
+  const id = req.body.id
+  var detail = await tour.getDetailTour(id)
+  res.json({detail: detail[0][0]})
+})
+
+app.post('/getimg', async (req, res) => {
+  const id = req.body.id
+  var path = await tour.getImg(id)
+  res.json({path: path[0]})
+})
+
+app.post('/getTour', async (req, res) => {
+  const id = req.body.id
+  var arr = await crud.getListTourById(id)
+  var arr1 = []
+  arr[0].map((value, index) => {
+    arr1.push(value.dataValues)
+  })
+
+  res.json({list: arr1, diadiem: arr[1]})
+})
+
+app.post('/getAll', async (req, res) => {
+  const table = req.body.table
+  console.log(table);
+  var list = await crud.getAll(table)
+  res.json({list: list[0]})
+})
+
+var storage = multer.diskStorage({
+      destination: function (req, file, cb) {
+      cb(null, 'public/img')
+    },
+    filename: function (req, file, cb) {
+      cb(null, file.originalname )
+    }
+})
+
+var excelFilter = function (req, file, cb) {
+  if (!file.originalname.match(/\.(jpg|png|xlsm)$/)) {
+    return cb(new Error('Only jpg,png file are allowed!'), false);
+  }
+  cb(null, true);
+}
+var upload = multer({storage: storage, fileFilter: excelFilter});
+var excelUpload = upload.single('foo');
+
+app.post('/uploadimg', async (req, res) => {
+
+  excelUpload(req, res, (err) => {
+    if(err) {
+      console.log(err);
+      return res.json({message:'must a file excel'});
+    }
+    var file = req.file;
+    if (!file) {
+        return res.json({message: "please upload a file"});
+    } else {
+
+        console.log('upload success!');
+
+        res.json({message: 'upload success'})
+      }
+  });
+})
+
+app.post('/update', async (req, res) => {
+  const fs = require('fs')
+  var del = req.body.del
+  if(del){
+    var path = req.body.data.imgKey
+    const pathDelete = `./public${path}`
+    try {
+      fs.unlinkSync(pathDelete)
+      //file removed
+    } catch(err) {
+      console.error(err)
+    }
+  }
+  var imgKey
+  if(del){
+    imgKey = '/img/' + req.body.fileName
+  } else{
+    imgKey = req.body.data.imgKey
+  }
+  console.log(req.body);
+  var updateDiadiem = await crud.updateDiadiem(req.body.data.id, req.body.data.diadiem, imgKey)
+  if(updateDiadiem){
+    res.json({message:'success'})
+  } else
+    res.json({message:'error'})
+})
+
+app.post('/updateTour', async (req, res) => {
+  var id_tour = req.body.id_tour
+  var id_diadiem = req.body.id_diadiem
+  var tentour = req.body.tentour
+  var gia = req.body.gia
+  var lichtrinh = req.body.lichtrinh
+
+  var updateTour = await crud.updateTour(id_tour, id_diadiem, tentour, gia, lichtrinh)
+  if(updateTour){
+    res.json({message:'success'})
+  } else
+    res.json({message:'error'})
+
+})
+
+app.post('/insert', async (req, res) => {
+
+  var table = req.body.table
+  console.log(req.body.data);
+  if(table === 'diadiem'){
+    var diadiem = req.body.data.diadiem
+    var imgKey = req.body.data.imgKey
+    var insertDiadiem = await crud.insertDiadiem(diadiem,imgKey)
+    if(insertDiadiem){
+      res.json({message:'success'})
+    } else {
+      res.json({message: 'error'})
+    }
+  } else if (table === 'tour') {
+    console.log(req.body.data);
+      var id_diadiem = req.body.data.id_diadiem
+      var tentour = req.body.data.tentour
+      var gia = req.body.data.gia
+      var lichtrinh = req.body.data.lichtrinh
+      var insertTour = await crud.insertTour(id_diadiem, tentour, gia, lichtrinh)
+      if(insertTour){
+        res.json({message:'success'})
+      } else {
+        res.json({message: 'error'})
+      }
+  }
+
+})
+
+app.post('/delete', async (req, res) => {
+  var id = req.body.id.id
+  console.log("delete");
+  console.log(id);
+  var deleteDiadiem = await crud.delete(id)
+  if(deleteDiadiem){
+    res.json({message:'success'})
+  } else {
+    res.json({message:'error'})
+  }
+})
 
 app.listen(8000, function(){
   console.log("Started on PORT 8000");
