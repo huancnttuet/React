@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {Button, Modal, Row, Col, Container, Form} from 'react-bootstrap'
 import axios from 'axios'
+import { MDBBtn } from "mdbreact"
 
 function AddTour(props) {
 
@@ -27,9 +28,7 @@ function AddTour(props) {
 
   return(
     <>
-    <Button variant="outline-warning" onClick={handleShow}>
-         Sửa
-    </Button>
+    <MDBBtn gradient="purple" size='sm' onClick={handleShow}>Sửa</MDBBtn>
 
        <Modal show={show} onHide={handleClose}>
          <Modal.Header closeButton>

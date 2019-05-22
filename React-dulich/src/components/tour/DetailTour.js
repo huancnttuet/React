@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {Container, Row, Col, Button, Card} from 'react-bootstrap'
 import BookTour from './BookTour'
+import SlideShow from './content/SlideShow'
 import axios from 'axios'
 
 function DetailTour(props) {
@@ -36,19 +37,11 @@ function DetailTour(props) {
     <Card>
       <Card.Header>{tour.tentour}</Card.Header>
 
-      <Card.Title>Ảnh</Card.Title>
+      <Card.Title></Card.Title>
       <Row >
-      {
-        path.map((value, index) => {
-          return(
-            <Col>
-              <img src={value.path} style={{height:200, width:200}}/>
-            </Col>
-          )
-        })
-      }
-      </Row>
-      <Row>
+        <Col>
+          <SlideShow pathImg={path} />
+        </Col>
         <Col>
           <Card.Title>Giá</Card.Title>
           <Card.Text>{tour.gia} VNĐ</Card.Text>
@@ -56,6 +49,8 @@ function DetailTour(props) {
         <Col >
           <BookTour id={id} info={tour}/>
         </Col>
+      </Row>
+      <Row>
       </Row>
 
       <Card.Body>

@@ -32,7 +32,7 @@ function ListBoxImg(props) {
           </Row>
         </Container>
       </Card.Body>
-      <Card.Footer className="text-muted">2 days ago</Card.Footer>
+      <Card.Footer className="text-muted">Create by HuanUET</Card.Footer>
     </Card>
   )
 }

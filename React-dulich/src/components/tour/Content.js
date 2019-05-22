@@ -6,10 +6,8 @@ import ListBoxImg from './content/ListBoxImg'
 function Content(props) {
   return (
     <div>
-
-      <SlideShow />
       <BoxFind />
-      <ListBoxImg number='12'/>
+      <ListBoxImg />
     </div>
   )
 }

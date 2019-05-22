@@ -3,6 +3,8 @@ import {Table,  Badge, Container, Col, Row, Button, Modal, ButtonToolbar} from '
 import axios from 'axios'
 import MyVerticallyCenteredModal from './MyVerticallyCenteredModal'
 import AddMyVerticallyCenteredModal from './AddMyVerticallyCenteredModal'
+import {MDBIcon} from 'mdbreact'
+
 function PlaceManager(props) {
   const [list, setList] = useState([])
   const [once, setOnce] = useState(false)
@@ -100,10 +102,10 @@ function PlaceManager(props) {
             list.map((value, index) => {
               return(
                 <tr>
-                <td>{value.id}</td>
-                <td>{value.diadiem}</td>
-                <td>{value.imgKey}</td>
-                <td><img style={{height:150}}src={value.imgKey} /></td>
+                <td><a href={`diadiem/${value.id}`}>{value.id}</a></td>
+                <td><a href={`diadiem/${value.id}`}>{value.diadiem}</a></td>
+                <td><a href={`diadiem/${value.id}`}>{value.imgKey}</a></td>
+                <td><a href={`diadiem/${value.id}`}><img style={{height:150}}src={value.imgKey} /></a></td>
                 <td>
                   <Container>
                     <Row>
@@ -155,9 +157,7 @@ function PlaceManager(props) {
                           />
                       </ButtonToolbar>
                     </Row>
-                    <Row>
-                      <Button variant="outline-link"><a href={`diadiem/${value.id}`}>--></a></Button>
-                    </Row>
+
                   </Container>
                 </td>
                 </tr>

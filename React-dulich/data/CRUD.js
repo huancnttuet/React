@@ -27,11 +27,18 @@ const Tour = sequelize.define('tour', {
   id_tour: {type: Sequelize.INTEGER, primaryKey: true},
   id_diadiem: Sequelize.INTEGER,
   tentour: Sequelize.STRING,
-  id_img: Sequelize.INTEGER,
-  img_main: Sequelize.STRING,
   gia: Sequelize.INTEGER,
-  lichtrinh: Sequelize.STRING
+  lichtrinh: Sequelize.TEXT
 })
+
+const Img = sequelize.define('img', {
+  id_img:  {type: Sequelize.INTEGER, primaryKey: true},
+  path: Sequelize.STRING,
+  id_tour: Sequelize.INTEGER
+})
+
+
+const Op = Sequelize.Op;
 
 module.exports = {
   getAll: async function (table) {
@@ -120,5 +127,57 @@ module.exports = {
     })
 
     return list
+  },
+  insertImg: async function (id, path) {
+    for (var i = 0; i < path.length; i++) {
+      Img.findOrCreate({
+        where: {
+          id_tour: 0
+        },
+        defaults: {
+          id_tour: id, path: path[i]
+        }
+      })
+    }
+  },
+  getImg: async function (id) {
+    var listImg = await Img.findAll({
+      where: {
+        id_tour: id
+      }
+    })
+    return listImg
+  },
+  deleteImg: async function (id) {
+    var dltImg = await Img.destroy({
+      where: {
+        id_img: id
+      }
+    })
+    if(dltImg === 1)
+      return true
+    return false
+  },
+  findTour: async function (data) {
+    var rs = Tour.findAll({
+      where: {
+        tentour: {
+          [Op.like]: `%${data}%`
+        }
+      }
+    })
+    return rs
+  },
+  getImgFisrt: async function (arr) {
+    var result = []
+    for (var i = 0; i < arr.length; i++) {
+      var rs = await Img.findOne({
+        where: {
+          id_tour: arr[i]
+        }
+      })
+      result.push(rs)
+    }
+    return result
   }
 }

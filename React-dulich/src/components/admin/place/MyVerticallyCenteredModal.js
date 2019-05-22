@@ -11,6 +11,7 @@ function MyVerticallyCenteredModal(props) {
   const [file, setFile] = useState({name:''})
   const [del, setDel] = useState(false)
   const [imgAccess, setImgAccess] = useState(false)
+  const [textAccess, setTextAccess] = useState(false)
   function handleClick() {
     if(imgAccess){
       const formData = new FormData()
@@ -27,10 +28,12 @@ function MyVerticallyCenteredModal(props) {
         props.callback(req.message)
         setImgAccess(false)
       })
-    } else {
+    }
+    if(textAccess) {
       axios.post("http://localhost:8000/update", {data: choosed, del: false}).then((req) => {
         console.log(req);
         props.callback(req.message)
+        setTextAccess(false)
       })
     }
 
@@ -41,7 +44,7 @@ function MyVerticallyCenteredModal(props) {
       diadiem: e.target.value,
       imgKey: props.choose.imgKey
     })
-
+    setTextAccess(true)
   }
   function handleChange2(e) {
     setImgAccess(true)

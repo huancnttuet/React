@@ -2,7 +2,7 @@ import React,{useState} from 'react'
 import {Form, Button, Col, Row, Container} from 'react-bootstrap'
 import axios from 'axios'
 import { connect } from 'react-redux'
-import TopPage from '../TopPage'
+
 
 function SignIn(props) {
   const username = useFormInput('')
@@ -19,7 +19,7 @@ function SignIn(props) {
     axios.post('http://localhost:8000/signin', {data}).then((res) => {
       console.log(res.data.login);
       if(res.data.login){
-        props.dispatch({type: 'LOGIN', payload: res.data.id})
+        props.dispatch({type: 'LOGIN', payload: {id: res.data.id, level: res.data.level} })
       } else {
         setMessage(res.data.message)
       }
@@ -37,7 +37,7 @@ function SignIn(props) {
   else {
     return(
       <div>
-        
+
         <Container>
           <Row style={{marginTop:50}}>
             <Col>

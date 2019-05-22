@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {Button, Modal, Row, Col, Container, Form, Card} from 'react-bootstrap'
+import { MDBBtn } from "mdbreact";
 import axios from 'axios'
 
 function BookTour(props) {
@@ -20,19 +21,20 @@ function BookTour(props) {
     setShow(false)
   }
   function handleClick() {
-
+    setStyle({visibility:''})
     if(!once){
-      axios.post('http://localhost:8000/booktour', {email: email.value, type: 'verify'}).then((req) => {
+      axios.post('http://localhost:8000/sendCode', {email: email.value}).then((req) => {
         console.log(req);
-        setStyle({visibility:''})
         setOnce(true)
       })
     } else {
-      axios.post('http://localhost:8000/booktour', {id_tour: id_tour, email: email.value, hovaten: hovaten.value, code: code.value, type: 'book'}).then((req) => {
+      axios.post('http://localhost:8000/booktour', {id_tour: id_tour, email: email.value, hovaten: hovaten.value, code: code.value}).then((req) => {
         console.log(req.data);
         if(req.data.result){
           setMessage('OK')
-
+          axios.post('http://localhost:8000/createOrder', {id_tour: id_tour, email: email.value, hovaten: hovaten.value, trangthai: 'Chưa nộp tiền'}).then((req) => {
+            console.log(req.data);
+          })
         } else {
           setMessage('Mã xác thực không đúng, vui lòng nhập lại')
         }
@@ -45,10 +47,7 @@ console.log(code.value);
 
   return(
     <>
-    <Button variant="outline-success" onClick={handleShow}>
-         Đặt tour
-    </Button>
-
+      <MDBBtn gradient="aqua" size='lg' onClick={handleShow}>Đặt Tour</MDBBtn>
        <Modal show={show} onHide={handleClose}>
          <Modal.Header closeButton>
            <Modal.Title>Đặt tour</Modal.Title>

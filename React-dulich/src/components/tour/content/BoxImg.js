@@ -1,7 +1,6 @@
 import React,{useState} from 'react';
 import {Card} from 'react-bootstrap'
 
-
 const styleImgSmall = {
   height: 250,
   width: 250
@@ -16,9 +15,10 @@ const styleImgText = {
 
 const styleTextonImg={
   position: 'absolute',
-  top: '70%',
+  top: '75%',
   left: '50%',
-  transform: 'translate(-50%, -50%)'
+  transform: 'translate(-50%, -50%)',
+  color: '#CBF301'
 }
 
 function BoxImg(props) {
@@ -40,12 +40,14 @@ function BoxImg(props) {
   }
 
   return(
-    <a href={link} onClick={handleClick}>
-    <div style={styleHover} onMouseOut={toggleHover} onMouseOver={toggleHover} >
-        <Card.Img variant="top" src={props.pathImg} style={styleImgSmall} />
-        <Card.Title style={styleTextonImg}>{props.title}</Card.Title>
+    <div style={{marginTop:'32px'}}>
+      <a href={link} onClick={handleClick}>
+      <div style={styleHover} onMouseOut={toggleHover} onMouseOver={toggleHover} >
+          <Card.Img src={props.pathImg} style={styleImgSmall} />
+          <Card.Title style={styleTextonImg}>{props.title}</Card.Title>
+      </div>
+      </a>
     </div>
-    </a>
   )
 }
 

@@ -1,11 +1,12 @@
 import React, {useState} from 'react';
-import { Area, AreaChart, Line, CartesianGrid, XAxis, YAxis, Tooltip } from 'recharts';
+
+import { Line } from "react-chartjs-2";
+import { MDBContainer, MDBCol, MDBFormInline, MDBBtn } from "mdbreact";
 import axios from 'axios'
 
 
-async function  allApi() {
+async function  allApi(diadiem) {
   const appid = '5c645c97ea7528a19f56f09500a810d6'
-  var diadiem = 'Haiphong'
   var data = await axios.get(`https://api.openweathermap.org/data/2.5/forecast?q=${diadiem}&appid=${appid}`)
   return data
 }
@@ -13,49 +14,109 @@ async function  allApi() {
 
 
 function Weather(props) {
-  const [data, setData] = useState([])
+  const [data, setData] = useState('')
   const [once, setOnce] = useState(false)
-  if(!once){
-    allApi().then((req) => {
-      console.log(req.data.list);
-      var array = []
+  const [dataW, setDataW] = useState(
+    {
+      dataLine: {
+        labels: ["January", "February", "March", "April", "May"],
+        datasets: [
+          {
+            label: "My First dataset",
+            fill: true,
+            lineTension: 0.3,
+            backgroundColor: "rgba(225, 204,230, .3)",
+            borderColor: "rgb(205, 130, 158)",
+            borderCapStyle: "butt",
+            borderDash: [],
+            borderDashOffset: 0.0,
+            borderJoinStyle: "miter",
+            pointBorderColor: "rgb(205, 130,1 58)",
+            pointBackgroundColor: "rgb(255, 255, 255)",
+            pointBorderWidth: 10,
+            pointHoverRadius: 5,
+            pointHoverBackgroundColor: "rgb(0, 0, 0)",
+            pointHoverBorderColor: "rgba(220, 220, 220,1)",
+            pointHoverBorderWidth: 2,
+            pointRadius: 1,
+            pointHitRadius: 10,
+            data: [34, 34, 34, 34, 34]
+          },
+        ]
+      }
+    }
+  )
 
+function handleChange(e) {
+  setData(e.target.value)
+}
+
+function handleClick() {
+    allApi(data).then((req) => {
+      console.log(req.data.list);
+      var temp = []
+      var day = []
       req.data.list.map((value, index) => {
         var ts = ''
         var tp
         if(index % 8 === 0){
           ts = value.dt_txt.split(' ')[0].split('-')[2] + '-' + value.dt_txt.split(' ')[0].split('-')[1]
           tp = Math.ceil(value.main.temp - 273.15)
-          array.push(
-            {day: ts, temp: tp}
-          )
+          temp.push(tp)
+          day.push(ts)
         }
       })
-      console.log(array)
-      setData(array)
-      setOnce(true)
+      console.log(temp);
+      console.log(day);
+      setDataW({
+        dataLine: {
+          labels: day,
+          datasets: [
+            {
+              label: "Nhiệt độ",
+              fill: true,
+              lineTension: 0.3,
+              backgroundColor: "rgba(225, 204,230, .3)",
+              borderColor: "rgb(205, 130, 158)",
+              borderCapStyle: "butt",
+              borderDash: [],
+              borderDashOffset: 0.0,
+              borderJoinStyle: "miter",
+              pointBorderColor: "rgb(205, 130,1 58)",
+              pointBackgroundColor: "rgb(255, 255, 255)",
+              pointBorderWidth: 10,
+              pointHoverRadius: 5,
+              pointHoverBackgroundColor: "rgb(0, 0, 0)",
+              pointHoverBorderColor: "rgba(220, 220, 220,1)",
+              pointHoverBorderWidth: 2,
+              pointRadius: 1,
+              pointHitRadius: 10,
+              data: temp
+            },
+          ]
+        }
+      })
     })
-  }
+
+}
   return (
     <div>
-      <AreaChart width={500} height={180} data={data}
-        margin={{ top: 50, right: 30, left: 90, bottom: 0 }}>
-        <defs>
-          <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="5%" stopColor="#8884d8" stopOpacity={0.8}/>
-            <stop offset="95%" stopColor="#8884d8" stopOpacity={0}/>
-          </linearGradient>
+      <MDBContainer>
+        <MDBCol md="12">
+          <MDBFormInline className="md-form mr-auto mb-4">
+            <input className="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" onChange={handleChange} />
+            <MDBBtn gradient="aqua" rounded size="sm" className="mr-auto" onClick={handleClick}>
+              Search
+            </MDBBtn>
+          </MDBFormInline>
+        </MDBCol>
+        <h3 className="mt-5">{data}</h3>
+        <Line data={dataW.dataLine} options={{ responsive: true }} />
+      </MDBContainer>
 
-        </defs>
-        <XAxis dataKey="day" />
-        <YAxis />
-        <CartesianGrid strokeDasharray="3 3" />
-        <Tooltip />
-        <Area type="monotone" dataKey="temp" stroke="#8884d8" fillOpacity={1} fill="url(#colorUv)" />
-
-      </AreaChart>
     </div>
   )
 }
+
 
 export default Weather

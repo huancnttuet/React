@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {Button, Modal, Row, Col, Container, Form} from 'react-bootstrap'
 import axios from 'axios'
+import { MDBBtn } from "mdbreact"
 
 function AddTour(props) {
 
@@ -27,9 +28,9 @@ function AddTour(props) {
 
   return(
     <>
-    <Button variant="outline-primary" onClick={handleShow}>
+    <MDBBtn style={{fontSize:'15px'}} gradient="aqua" onClick={handleShow}>
          Thêm
-    </Button>
+    </MDBBtn>
 
        <Modal show={show} onHide={handleClose}>
          <Modal.Header closeButton>
@@ -47,9 +48,12 @@ function AddTour(props) {
                 <Form.Control {...gia}/>
               </Col>
             </Row>
-            <Row>
+            <Row style={{border:'solid', marginTop:'20px',marginBottom:'10px'}}>
+              <Col>
+                Ảnh
+                <Form.Control type='file' name='foo' />
+              </Col>
             </Row>
-            <Row>------------------------------------------------------------------------</Row>
             <Row>
               <Col>Lịch trình</Col>
               <Col>

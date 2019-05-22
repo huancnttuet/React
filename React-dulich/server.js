@@ -5,9 +5,11 @@ var cors = require('cors')
 var data = require('./data/data.js')
 var tour = require('./data/tour.js')
 var crud = require('./data/CRUD.js')
+var order = require('./data/order.js')
 var nodemailer = require('nodemailer');
 var crypto = require('crypto');
 var multer = require('multer')
+var fs = require('fs')
 //Here we are configuring express to use body-parser as middle-ware.
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -30,7 +32,7 @@ app.post('/signin', async (req, res) => {
 
   if(valueSignIn !== 0){
     console.log('login true');
-    res.json({login: true, username: valueSignIn.username, id: valueSignIn.id})
+    res.json({login: true, username: valueSignIn.username, id: valueSignIn.id, level: valueSignIn.level})
   }else {
     console.log('login false');
     res.json({login: false, message: 'Sai mat khau'})
@@ -152,8 +154,18 @@ app.get('/getList', async (req, res) => {
 })
 
 app.post('/getListTour', async (req, res) => {
-  const id = req.body.data.id
+  const id = req.body.id
   var list = await tour.getListTour(id)
+  var idArr = []
+  list[0].map((value, index) => {
+    idArr.push(value.id_tour)
+  })
+  var path = await crud.getImgFisrt(idArr)
+  var pathImg = []
+  path.map((value, index) => {
+    list[0][index].path = value.dataValues.path
+  })
+
   res.json({list:list[0]})
 })
 
@@ -187,26 +199,26 @@ app.post('/getAll', async (req, res) => {
   res.json({list: list[0]})
 })
 
-var storage = multer.diskStorage({
-      destination: function (req, file, cb) {
-      cb(null, 'public/img')
-    },
-    filename: function (req, file, cb) {
-      cb(null, file.originalname )
-    }
-})
-
-var excelFilter = function (req, file, cb) {
-  if (!file.originalname.match(/\.(jpg|png|xlsm)$/)) {
-    return cb(new Error('Only jpg,png file are allowed!'), false);
-  }
-  cb(null, true);
-}
-var upload = multer({storage: storage, fileFilter: excelFilter});
-var excelUpload = upload.single('foo');
+var dir =''
 
 app.post('/uploadimg', async (req, res) => {
+  var storage = multer.diskStorage({
+        destination: function (req, file, cb) {
+        cb(null, 'public/img')
+      },
+      filename: function (req, file, cb) {
+        cb(null, file.originalname )
+      }
+  })
 
+  var excelFilter = function (req, file, cb) {
+    if (!file.originalname.match(/\.(jpg|png|xlsm)$/)) {
+      return cb(new Error('Only jpg,png file are allowed!'), false);
+    }
+    cb(null, true);
+  }
+  var upload = multer({storage: storage, fileFilter: excelFilter});
+  var excelUpload = upload.single('foo');
   excelUpload(req, res, (err) => {
     if(err) {
       console.log(err);
@@ -224,8 +236,89 @@ app.post('/uploadimg', async (req, res) => {
   });
 })
 
+app.post('/createFolder', async (req, res) => {
+  dir = `./public/img/${req.body.id}`
+  if (!fs.existsSync(dir)){
+    fs.mkdirSync(dir);
+}
+})
+
+app.post('/uploadimgs', async (req, res) => {
+
+  var storage = multer.diskStorage({
+        destination: function (req, file, cb) {
+        cb(null, dir)
+      },
+      filename: function (req, file, cb) {
+        cb(null, file.originalname )
+      }
+  })
+
+  var excelFilter = function (req, file, cb) {
+    if (!file.originalname.match(/\.(jpg|png|xlsm)$/)) {
+      return cb(new Error('Only jpg,png file are allowed!'), false);
+    }
+    cb(null, true);
+  }
+  var upload = multer({storage: storage, fileFilter: excelFilter});
+  var excelUpload = upload.array('foo',10);
+  excelUpload(req, res, (err) => {
+    if(err) {
+      console.log(err);
+      return res.json({message:'must a file excel'});
+    }
+    console.log(req.body);
+    console.log(req.files);
+    var file = req.files;
+    if (!file) {
+        return res.json({message: "please upload a file"});
+    } else {
+
+        console.log('upload success!');
+
+        res.json({message: 'upload success'})
+      }
+  });
+})
+
+app.post('/pathImg', async (req, res) => {
+    var arr = req.body.path
+    var id = req.body.id
+    var path = []
+    arr.map((value, index) => {
+      path[index] = `/img/${id}/${value}`
+    })
+    var rs = await crud.insertImg(id, path)
+
+})
+
+app.post('/showImg', async (req, res) => {
+  var id_tour = req.body.id
+  var listImg = await crud.getImg(id_tour)
+  res.json({listImg: listImg})
+})
+
+app.post('/deleteImg', async (req, res) => {
+  var id_img = req.body.id
+  console.log(id_img);
+  var rs = await crud.deleteImg(id_img)
+  if(rs){
+    res.json({message:'delete ok'})
+  } else {
+    res.json({message:'delete error'})
+  }
+  var path = req.body.path
+  var pathDelete = `public${path}`
+  try {
+    fs.unlinkSync(pathDelete)
+    //file removed
+  } catch(err) {
+    console.error(err)
+  }
+})
+
 app.post('/update', async (req, res) => {
-  const fs = require('fs')
+
   var del = req.body.del
   if(del){
     var path = req.body.data.imgKey
@@ -319,7 +412,9 @@ app.post('/deletetour', async (req, res) => {
   }
 })
 
-app.post('/booktour', async (req, res) => {
+var code
+
+app.post('/sendCode', async (req, res) => {
   var email = req.body.email
   const createCode = () => {
     var length = 6,
@@ -356,23 +451,74 @@ app.post('/booktour', async (req, res) => {
       }
     });
   }
-  var code
-  if(req.body.type === 'verify') {
-    code = createCode()
-    sendMail(email, code)
-  } else if (req.body.type === 'book') {
-    var hovaten = req.body.hovaten
-    var coded = req.body.code
-    var id_tour = req.body.id_tour
-    console.log(code);
-    console.log(coded);
-    if(code === coded){
 
-      res.json({result: true})
-    } else {
-      res.json({result: false})
-    }
+  code = createCode()
+  sendMail(email, code)
+
+
+})
+
+app.post('/booktour', async (req, res) => {
+  var hovaten = req.body.hovaten
+  var coded = req.body.code
+  var id_tour = req.body.id_tour
+  console.log(code);
+  console.log(coded);
+  if(code === coded){
+
+    res.json({result: true})
+  } else {
+    res.json({result: false})
   }
+})
+
+app.post('/find', async (req, res) => {
+  var data = req.body.data
+  var rs = await crud.findTour(data)
+  res.json({list: rs})
+})
+
+app.post('/createOrder', async (req, res) => {
+  var id_tour = req.body.id_tour
+  var email = req.body.email
+  var hovaten = req.body.hovaten
+  var trangthai = req.body.trangthai
+  var rs = await order.createOrder(id_tour, email, hovaten, trangthai)
+  if(rs) {
+    res.json({message: 'ok'})
+  } else {
+    res.json({message: 'error'})
+  }
+})
+
+app.get('/getAllOrder', async (req, res) => {
+  var list = await order.getAllOrder()
+  var arr = []
+  list.map((value, index) => {
+      arr.push(value.dataValues)
+  })
+  console.log(arr);
+  res.json({list: arr})
+})
+
+app.post('/updateOrder', async (req, res) => {
+  var id_order = req.body.id_order
+  var id_tour = req.body.id_tour
+  var email = req.body.email
+  var hovaten = req.body.hovaten
+  var trangthai = req.body.trangthai
+  var rs = await order.updateOrder(id_order, email, hovaten, id_tour, trangthai)
+  res.json({result: rs})
+})
+
+app.post('/getOneOrder', async (req, res) => {
+  var id = req.body.id
+  var rs = await order.getOneOrder(id)
+  res.json({result: rs[0].dataValues})
+})
+
+app.post('/deleteOrder', async (req, res) => {
+
 })
 
 app.listen(8000, function(){

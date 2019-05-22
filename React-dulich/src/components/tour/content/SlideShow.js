@@ -10,16 +10,16 @@ function SlideShow(props) {
     setIndex(selectedIndex)
     setDirection(e.direction)
   }
-  var pathImg = ['/img/5.jpg','/img/6.jpg','/img/7.jpg']
+  var pathImg = props.pathImg
 
   const styleImgBox = {
     display: 'grid',
     height: '100%'
   }
   const styleCenterFit = {
-    maxWidth: '100%',
-    maxHeight: '100vh',
-    margin: 'auto'
+    width: '750px',
+    height: '500px'
+
   }
 
   return (
@@ -30,43 +30,24 @@ function SlideShow(props) {
         onSelect={handleSelect}
         style={styleCenterFit}
         >
-        <Carousel.Item>
-        <img
-        className="d-block w-100"
-        src={pathImg[0]}
-        alt="First slide"
-        />
-        <Carousel.Caption>
-        <h3>First slide label</h3>
-        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-        </Carousel.Caption>
-        </Carousel.Item>
-        <Carousel.Item>
-        <img
-        className="d-block w-100"
-        src={pathImg[1]}
-        alt="Second slide"
-        />
-
-        <Carousel.Caption>
-        <h3>Second slide label</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-        </Carousel.Caption>
-        </Carousel.Item>
-        <Carousel.Item>
-        <img
-        className="d-block w-100"
-        src={pathImg[2]}
-        alt="Third slide"
-        />
-
-        <Carousel.Caption>
-        <h3>Third slide label</h3>
-        <p>
-        Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-        </p>
-        </Carousel.Caption>
-        </Carousel.Item>
+      {
+        pathImg.map((value, index) => {
+          console.log(value);
+          return(
+            <Carousel.Item>
+            <img
+            className="d-block w-100"
+            src={value.path}
+            alt="First slide"
+            />
+            <Carousel.Caption>
+            <h3></h3>
+            <p>{}</p>
+            </Carousel.Caption>
+            </Carousel.Item>
+          )
+        })
+      }
       </Carousel>
     </div>
   )

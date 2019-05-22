@@ -34,7 +34,7 @@ module.exports = {
     return createUser
   },
   checkSignIn: async function (usernameSignIn, pwdSignIn) {
-    var id = await sequelize.query(`SELECT id,username FROM user WHERE pwd='${pwdSignIn}' AND username='${usernameSignIn}'`).then(result => {
+    var id = await sequelize.query(`SELECT id,username,level FROM user WHERE pwd='${pwdSignIn}' AND username='${usernameSignIn}'`).then(result => {
       console.log(result);
 
       if(result[0][0] != null){
@@ -74,5 +74,6 @@ module.exports = {
       return null
     })
     return pwd
-  }
+  },
+
 }

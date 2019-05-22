@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {Button, Modal, Row, Col, Container, Form} from 'react-bootstrap'
 import axios from 'axios'
+import { MDBBtn } from "mdbreact"
 
 function DeleteTour(props) {
 
@@ -24,9 +25,8 @@ function DeleteTour(props) {
 
   return(
     <>
-    <Button variant="outline-danger" onClick={handleShow}>
-         Xóa
-    </Button>
+    <MDBBtn gradient="peach" onClick={handleShow} size='sm'>Xóa</MDBBtn>
+
 
        <Modal show={show} onHide={handleClose}>
          <Modal.Header closeButton>
