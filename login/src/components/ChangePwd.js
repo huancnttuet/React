@@ -1,11 +1,10 @@
 import React, {useState} from 'react';
-import TopPage from './TopPage'
 import {Form, Button, Col, Row, Container} from 'react-bootstrap'
 import axios from 'axios'
 import {useGlobal} from 'reactn'
 
 function ChangePwd(props) {
-  const [global, setGlobal] = useGlobal()
+  const [id, setId] = useGlobal('id')
   const pwd = useFormInput('')
   const newPwd = useFormInput('')
   const reNewPwd = useFormInput('')
@@ -23,7 +22,7 @@ function ChangePwd(props) {
           setMessage('password không khớp nhau')
         } else {
           var data = {
-            id: global.id,
+            id: id,
             pwd: pwd.value,
             pwdNew: newPwd.value
           }
@@ -39,7 +38,7 @@ function ChangePwd(props) {
 
   return (
     <div>
-      <TopPage type='logout' />
+
       <Container>
         <Row style={{marginTop:50}}>
           <Col></Col>

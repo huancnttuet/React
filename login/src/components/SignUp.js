@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Form, Button, Col, Row, Container} from 'react-bootstrap'
 import axios from 'axios'
-import TopPage from './TopPage'
+
 
 function SignUp(props) {
   const emailSignUp = useFormInput('')
@@ -32,7 +32,7 @@ function SignUp(props) {
 
   return(
     <div>
-      <TopPage type='signin' />
+  
       <Container>
         <Row style={{marginTop:50}}>
           <Col></Col>
