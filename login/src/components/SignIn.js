@@ -17,7 +17,6 @@ function SignIn(props) {
       usernameSignIn: username.value,
       pwdSignIn: pwd.value
     }
-
     axios.post('http://localhost:8000/signin', {data}).then((res) => {
       console.log(res.data.login);
       if(res.data.login){
@@ -29,7 +28,6 @@ function SignIn(props) {
         setMessage(res.data.message)
       }
     })
-
   }
   console.log(global.state.authenticate);
   if(global.state.authenticate === true){
@@ -51,7 +49,7 @@ function SignIn(props) {
             </Col>
             <Col >
               <Form>
-                <Form.Group controlId="formBasicUsername" {...username}>
+                <Form.Group controlId="form-basic-username" {...username}>
                   <Form.Label>Username</Form.Label>
                   <Form.Control type="text" placeholder="Enter username" />
                   <Form.Text className="text-muted">
@@ -66,7 +64,7 @@ function SignIn(props) {
                 <Form.Group controlId="formBasicChecbox">
                   <Form.Check type="checkbox" label="Check me out" />
                 </Form.Group>
-                <Button variant="primary" id='loginBtn' onClick={handleClick}>
+                <Button variant="primary" id='login-btn' onClick={handleClick}>
                   Submit
                 </Button>
                 <p>{message}</p>

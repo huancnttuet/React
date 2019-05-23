@@ -59,7 +59,7 @@ function ChangePwd(props) {
                 <Form.Control type="password" placeholder="Enter re-password"/>
               </Form.Group>
 
-              <Button variant="primary"  onClick={handleClick}>
+              <Button variant="primary" id='cp-btn' onClick={handleClick}>
                 Submit
               </Button>
             </Form>

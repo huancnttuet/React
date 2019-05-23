@@ -30,24 +30,24 @@
 //   expect(new Set(shoppingList)).toContain('beer');
 // });
 
-import axios from 'axios'
-
-test('test /signin', () => {
-  const data = {
-      usernameSignIn: `huanhuan`,
-      pwdSignIn: `'12' AND username='huanhuan'`
-    }
-  return axios.post('http://localhost:8000/signin', {data}).then(data => {
-    expect(data.data).toMatchObject({login:true});
-  });
-})
-
-test('test /signup', () => {
-  const data = {
-    usernameSignUp: `dasddasa`,
-    emailSignUp: `sadasdasd`
-  }
-  return axios.post('http://localhost:8000/signup', {data}).then(data => {
-    expect(data.data).toMatchObject({message:'create new user success '})
-  })
-})
+// import axios from 'axios'
+//
+// test('test /signin', () => {
+//   const data = {
+//       usernameSignIn: `huanhuan`,
+//       pwdSignIn: `'12' AND username='huanhuan'`
+//     }
+//   return axios.post('http://localhost:8000/signin', {data}).then(data => {
+//     expect(data.data).toMatchObject({login:true});
+//   });
+// })
+//
+// test('test /signup', () => {
+//   const data = {
+//     usernameSignUp: `dasddasa`,
+//     emailSignUp: `sadasdasd`
+//   }
+//   return axios.post('http://localhost:8000/signup', {data}).then(data => {
+//     expect(data.data).toMatchObject({message:'create new user success '})
+//   })
+// })

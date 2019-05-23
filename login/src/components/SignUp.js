@@ -32,7 +32,7 @@ function SignUp(props) {
 
   return(
     <div>
-  
+
       <Container>
         <Row style={{marginTop:50}}>
           <Col></Col>
@@ -58,7 +58,7 @@ function SignUp(props) {
               <Form.Check type="checkbox" label="Check me out" />
             </Form.Group>
 
-            <Button variant="primary" onClick={handleClick}>
+            <Button variant="primary" id='signup-btn' onClick={handleClick}>
               Submit
             </Button>
           </Form>

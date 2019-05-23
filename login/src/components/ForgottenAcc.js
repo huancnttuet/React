@@ -29,7 +29,7 @@ function ForgottenAcc(props) {
                 </Form.Group>
               </Form.Row>
               <span>{stateFA}</span>
-              <Button variant="primary" onClick={handleClick}>
+              <Button variant="primary" id='fa-btn' onClick={handleClick}>
                 Submit
               </Button>
             </Form>
