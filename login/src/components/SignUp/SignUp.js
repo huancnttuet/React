@@ -1,16 +1,14 @@
 import React, {useState} from 'react';
 import {Form, Button, Col, Row, Container} from 'react-bootstrap'
-import axios from 'axios'
+import { authServices } from 'services'
 
 
 function SignUp(props) {
   const emailSignUp = useFormInput('')
   const usernameSignUp = useFormInput('')
-
   const [stateSignUp, setStateSignUp] = useState('')
 
   function handleClick() {
-
     if(!checkUsername()) {
       setStateSignUp('errorUsername')
     } else {
@@ -18,7 +16,7 @@ function SignUp(props) {
         emailSignUp: emailSignUp.value,
         usernameSignUp: usernameSignUp.value
       }
-      axios.post('http://localhost:8000/signup', {data}).then( (res) => {
+      authServices.signup(data).then( (res) => {
         setStateSignUp(res.data.message)
       })
     }
@@ -32,7 +30,6 @@ function SignUp(props) {
 
   return(
     <div>
-
       <Container>
         <Row style={{marginTop:50}}>
           <Col></Col>
@@ -51,7 +48,6 @@ function SignUp(props) {
               </Form.Group>
             </Form.Row>
 
-
             <span>{stateSignUp}</span>
 
             <Form.Group id="formGridCheckbox">
@@ -67,7 +63,6 @@ function SignUp(props) {
         </Row>
       </Container>
     </div>
-
   )
 }
 

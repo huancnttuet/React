@@ -1,0 +1,90 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SignUp click button signup 1`] = `
+"<SignUp>
+  <div>
+    <Container as=\\"div\\" fluid={false}>
+      <div className=\\"container\\">
+        <Bootstrap(Row) style={{...}}>
+          <Row style={{...}} bsPrefix=\\"row\\" as=\\"div\\" noGutters={false}>
+            <div style={{...}} className=\\"row\\">
+              <Col as=\\"div\\">
+                <div className=\\"col\\" />
+              </Col>
+              <Col as=\\"div\\">
+                <div className=\\"col\\">
+                  <Form inline={false} as=\\"form\\">
+                    <form className=\\"\\">
+                      <FormRow>
+                        <div className=\\"form-row\\">
+                          <FormGroup as={{...}} controlId=\\"emailSignUp\\" value=\\"\\" onChange={[Function: handleChange]}>
+                            <Col value=\\"\\" onChange={[Function: handleChange]} className=\\"form-group\\" as=\\"div\\">
+                              <div value=\\"\\" onChange={[Function: handleChange]} className=\\"form-group col\\">
+                                <FormLabel column={false} srOnly={false}>
+                                  <label htmlFor=\\"emailSignUp\\" className=\\"form-label\\">
+                                    Email
+                                  </label>
+                                </FormLabel>
+                                <FormControl type=\\"email\\" placeholder=\\"Enter email\\" as=\\"input\\">
+                                  <input placeholder=\\"Enter email\\" type=\\"email\\" readOnly={[undefined]} id=\\"emailSignUp\\" className=\\"form-control\\" />
+                                </FormControl>
+                              </div>
+                            </Col>
+                          </FormGroup>
+                        </div>
+                      </FormRow>
+                      <FormRow>
+                        <div className=\\"form-row\\">
+                          <FormGroup as={{...}} controlId=\\"usernameSignUp\\" value=\\"\\" onChange={[Function: handleChange]}>
+                            <Col value=\\"\\" onChange={[Function: handleChange]} className=\\"form-group\\" as=\\"div\\">
+                              <div value=\\"\\" onChange={[Function: handleChange]} className=\\"form-group col\\">
+                                <FormLabel column={false} srOnly={false}>
+                                  <label htmlFor=\\"usernameSignUp\\" className=\\"form-label\\">
+                                    Username
+                                  </label>
+                                </FormLabel>
+                                <FormControl placeholder=\\"Enter username\\" as=\\"input\\">
+                                  <input placeholder=\\"Enter username\\" type={[undefined]} readOnly={[undefined]} id=\\"usernameSignUp\\" className=\\"form-control\\" />
+                                </FormControl>
+                              </div>
+                            </Col>
+                          </FormGroup>
+                        </div>
+                      </FormRow>
+                      <span />
+                      <FormGroup id=\\"formGridCheckbox\\" as=\\"div\\">
+                        <div id=\\"formGridCheckbox\\" className=\\"form-group\\">
+                          <FormCheck type=\\"checkbox\\" label=\\"Check me out\\" inline={false} disabled={false} isValid={false} isInvalid={false} title=\\"\\">
+                            <div style={[undefined]} className=\\"form-check\\">
+                              <FormCheckInput type=\\"checkbox\\" isValid={false} isInvalid={false} isStatic={false} disabled={false}>
+                                <input type=\\"checkbox\\" disabled={false} id={[undefined]} className=\\"form-check-input\\" />
+                              </FormCheckInput>
+                              <FormCheckLabel title=\\"\\" type=\\"checkbox\\">
+                                <label title=\\"\\" type=\\"checkbox\\" htmlFor={[undefined]} className=\\"form-check-label\\">
+                                  Check me out
+                                </label>
+                              </FormCheckLabel>
+                            </div>
+                          </FormCheck>
+                        </div>
+                      </FormGroup>
+                      <Button variant=\\"primary\\" id=\\"signup-btn\\" onClick={[Function: handleClick]} active={false} disabled={false} type=\\"button\\">
+                        <button id=\\"signup-btn\\" onClick={[Function: handleClick]} disabled={false} type=\\"button\\" className=\\"btn btn-primary\\">
+                          Submit
+                        </button>
+                      </Button>
+                    </form>
+                  </Form>
+                </div>
+              </Col>
+              <Col as=\\"div\\">
+                <div className=\\"col\\" />
+              </Col>
+            </div>
+          </Row>
+        </Bootstrap(Row)>
+      </div>
+    </Container>
+  </div>
+</SignUp>"
+`;

@@ -7,7 +7,7 @@ import SignIn from './SignIn'
 import SignUp from './SignUp'
 import ChangePwd from './ChangePwd'
 import ForgottenAcc from './ForgottenAcc'
-import NotFound from './NotFound'
+
 import TopPage from './TopPage'
 
 const reducer = (state, action) => {

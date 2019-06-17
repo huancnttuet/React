@@ -21,26 +21,35 @@ app.get('/test', async (req, res) => {
   var value = await data.test('dasdas','huanhuan12314141')
   res.json({value: value})
   console.log(value);
-
 })
 
 app.post('/signin', async (req, res) => {
-  var usernameSignIn = req.body.data.usernameSignIn
-  var pwdSignIn = req.body.data.pwdSignIn
+  var usernameSignIn = req.body.usernameSignIn
+  var pwdSignIn = req.body.pwdSignIn
   var valueSignIn = await data.checkSignIn(usernameSignIn, pwdSignIn)
 
   if(valueSignIn !== 0){
     console.log('login true');
-    res.json({login: true, username: valueSignIn.username, id: valueSignIn.id})
-  }else {
+    res.json({
+      code: 'SUCCESS',
+      message: 'Đăng ký thành công',
+      result: {
+        username: valueSignIn.username,
+        id: valueSignIn.id,
+      },
+    })
+  } else {
     console.log('login false');
-    res.json({login: false, message: 'Sai mat khau'})
+    res.json({
+      code: 'ERROR',
+      message: 'Sai mật khẩu'
+    })
   }
 })
 
 app.post('/signup', async (req, res) => {
-  var usernameSignUp = req.body.data.usernameSignUp
-  var emailSignUp = req.body.data.emailSignUp
+  var usernameSignUp = req.body.usernameSignUp
+  var emailSignUp = req.body.emailSignUp
 
   const sendMail = (pwd) => {
     var transporter = nodemailer.createTransport({
@@ -76,42 +85,56 @@ app.post('/signup', async (req, res) => {
     return retVal;
   }
 
-
   if(await data.checkSignUp(emailSignUp, usernameSignUp)){
     var pwdSignUp = createPwdSignUp();
 
     if(await data.createUser(emailSignUp, usernameSignUp, pwdSignUp)){
-      res.json({message:'create new user success '})
+      res.json({
+        code: 'SUCCESS',
+        message:'create new user success',
+      })
       sendMail(pwdSignUp)
     }else {
-      res.json({message:'error create new user'})
+      res.json({
+        code: 'ERROR',
+        message:'error create new user'
+      })
     }
   } else{
-    res.json({message:'user or mail exist'})
+    res.json({
+      code: 'EXIST',
+      message:'user or mail exist'
+    })
   }
-
-
 })
 
 
 app.post('/changepwd', async (req, res) => {
-  console.log(req.body.data);
-  var id = req.body.data.id
-  var pwd = req.body.data.pwd
-  var pwdNew = req.body.data.pwdNew
+  console.log(req.body);
+  var id = req.body.id
+  var pwd = req.body.pwd
+  var pwdNew = req.body.pwdNew
   if(await data.checkIdPwd(id, pwd)){
     if(await data.changePwd(id, pwdNew)){
-      res.json({result: true ,message:'ok'})
+      res.json({
+        code: 'SUCCESS' ,
+        message: 'Đổi mật khẩu thành công'})
     }else {
-      res.json({result: false , message: 'da co loi xay ra'})
+      res.json({
+        code: 'ERROR' ,
+        message: 'Đã có lỗi xảy ra'
+      })
     }
   } else {
-    res.json({ result: false, message: 'Sai pass'})
+    res.json({
+      code: 'SAIPASS',
+      message: 'Sai mật khẩu'
+    })
   }
 })
 
 app.post('/forgottenacc', async (req, res) => {
-  var emailFA = req.body.data.emailFA
+  var emailFA = req.body.emailFA
   var pwd = await data.checkEmailFA(emailFA)
   const sendMail = (pwd) => {
     var transporter = nodemailer.createTransport({
@@ -132,17 +155,26 @@ app.post('/forgottenacc', async (req, res) => {
     transporter.sendMail(mailOptions, function(error, info){
       if (error) {
         console.log(error);
-        res.json({message: 'Lỗi trong quá trình gửi mail'})
+        res.json({
+          code: 'ERROR',
+          message: 'Lỗi trong quá trình gửi mail'
+      })
       } else {
         console.log('Email sent: Quen pass ' + info.response);
-        res.json({message: 'Pass đã được gửi lại về mail của bạn'})
+        res.json({
+          code: 'SUCCESS',
+          message: 'Pass đã được gửi lại về mail của bạn'
+        })
       }
     });
   }
   if( pwd !== null){
     sendMail(pwd)
   } else {
-    res.json({result:false, message:'Mail chưa được đăng ký'})
+    res.json({
+      code: 'NOTFOUND',
+      message:'Mail chưa được đăng ký'
+    })
   }
 })
 

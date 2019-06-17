@@ -1,9 +1,6 @@
-import React,{useState } from 'react'
+import React,{useState, useGlobal } from 'reactn'
 import {Form, Button, Col, Row, Container} from 'react-bootstrap'
-import axios from 'axios'
-import {useGlobal} from 'reactn'
-
-
+import { authServices } from 'services'
 
 function SignIn(props) {
   const [global, setGlobal] = useGlobal()
@@ -17,7 +14,7 @@ function SignIn(props) {
       usernameSignIn: username.value,
       pwdSignIn: pwd.value
     }
-    axios.post('http://localhost:8000/signin', {data}).then((res) => {
+    authServices.login(data).then((res) => {
       console.log(res.data.login);
       if(res.data.login){
           global.dispatch({
@@ -29,13 +26,17 @@ function SignIn(props) {
       }
     })
   }
+
+  const goToForgottenAccount = () => {
+    props.history.push('/forgottenacc');
+  }
+
   console.log(global.state.authenticate);
   if(global.state.authenticate === true){
     return (
-      <div>
-
+      <>
         <h1>CHÀO MỪNG BẠN </h1>
-      </div>
+      </>
     )
   }
   else {
@@ -49,7 +50,7 @@ function SignIn(props) {
             </Col>
             <Col >
               <Form>
-                <Form.Group controlId="form-basic-username" {...username}>
+                <Form.Group controlId="username" {...username}>
                   <Form.Label>Username</Form.Label>
                   <Form.Control type="text" placeholder="Enter username" />
                   <Form.Text className="text-muted">
@@ -57,7 +58,7 @@ function SignIn(props) {
                   </Form.Text>
                 </Form.Group>
 
-                <Form.Group controlId="formBasicPassword" {...pwd}>
+                <Form.Group controlId="password" {...pwd}>
                   <Form.Label>Password</Form.Label>
                   <Form.Control type="password" placeholder="Password" />
                 </Form.Group>
@@ -68,7 +69,7 @@ function SignIn(props) {
                   Submit
                 </Button>
                 <p>{message}</p>
-                <a href='http://localhost:3000/forgottenacc'>Forgotten account?</a>
+                <a onClick={goToForgottenAccount}>Forgotten account?</a>
               </Form>
             </Col>
             <Col>
@@ -94,7 +95,5 @@ function useFormInput(initial){
     onChange: handleChange
   }
 }
-
-
 
 export default SignIn

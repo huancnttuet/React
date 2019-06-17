@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ForgottenAcc click button  1`] = `
+"<ForgottenAcc>
+  <div>
+    <Container as=\\"div\\" fluid={false}>
+      <div className=\\"container\\">
+        <Bootstrap(Row) style={{...}}>
+          <Row style={{...}} bsPrefix=\\"row\\" as=\\"div\\" noGutters={false}>
+            <div style={{...}} className=\\"row\\">
+              <Col as=\\"div\\">
+                <div className=\\"col\\" />
+              </Col>
+              <Col as=\\"div\\">
+                <div className=\\"col\\">
+                  <Form inline={false} as=\\"form\\">
+                    <form className=\\"\\">
+                      <FormRow>
+                        <div className=\\"form-row\\">
+                          <FormGroup as={{...}} controlId=\\"emailFA\\" value=\\"\\" onChange={[Function: handleChange]}>
+                            <Col value=\\"\\" onChange={[Function: handleChange]} className=\\"form-group\\" as=\\"div\\">
+                              <div value=\\"\\" onChange={[Function: handleChange]} className=\\"form-group col\\">
+                                <FormLabel column={false} srOnly={false}>
+                                  <label htmlFor=\\"emailFA\\" className=\\"form-label\\">
+                                    Email
+                                  </label>
+                                </FormLabel>
+                                <FormControl type=\\"email\\" placeholder=\\"Enter email\\" as=\\"input\\">
+                                  <input placeholder=\\"Enter email\\" type=\\"email\\" readOnly={[undefined]} id=\\"emailFA\\" className=\\"form-control\\" />
+                                </FormControl>
+                              </div>
+                            </Col>
+                          </FormGroup>
+                        </div>
+                      </FormRow>
+                      <span />
+                      <Button variant=\\"primary\\" id=\\"fa-btn\\" onClick={[Function: handleClick]} active={false} disabled={false} type=\\"button\\">
+                        <button id=\\"fa-btn\\" onClick={[Function: handleClick]} disabled={false} type=\\"button\\" className=\\"btn btn-primary\\">
+                          Submit
+                        </button>
+                      </Button>
+                    </form>
+                  </Form>
+                </div>
+              </Col>
+              <Col as=\\"div\\">
+                <div className=\\"col\\" />
+              </Col>
+            </div>
+          </Row>
+        </Bootstrap(Row)>
+      </div>
+    </Container>
+  </div>
+</ForgottenAcc>"
+`;

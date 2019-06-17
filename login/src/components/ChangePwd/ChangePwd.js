@@ -1,7 +1,6 @@
-import React, {useState} from 'react';
+import React, {useState, useGlobal} from 'reactn';
 import {Form, Button, Col, Row, Container} from 'react-bootstrap'
-import axios from 'axios'
-import {useGlobal} from 'reactn'
+import { authServices } from 'services'
 
 function ChangePwd(props) {
   const [id, setId] = useGlobal('id')
@@ -27,7 +26,7 @@ function ChangePwd(props) {
             pwdNew: newPwd.value
           }
           console.log(data);
-          axios.post('http://localhost:8000/changepwd', {data}).then((res) => {
+          authServices.changepwd(data).then((res) => {
             console.log(res.data);
             setMessage(res.data.message)
           })
@@ -38,7 +37,6 @@ function ChangePwd(props) {
 
   return (
     <div>
-
       <Container>
         <Row style={{marginTop:50}}>
           <Col></Col>

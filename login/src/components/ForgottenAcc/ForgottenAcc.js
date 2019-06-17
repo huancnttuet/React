@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Form, Button, Col, Row, Container} from 'react-bootstrap'
-import axios from 'axios'
+import { authServices } from 'services'
 
 function ForgottenAcc(props) {
   const emailFA = useFormInput('')
@@ -10,7 +10,7 @@ function ForgottenAcc(props) {
       var data = {
         emailFA: emailFA.value,
       }
-      axios.post('http://localhost:8000/forgottenacc', {data}).then( (res) => {
+      authServices.forgottenacc(data).then( (res) => {
         setStateFA(res.data.message)
       })
   }

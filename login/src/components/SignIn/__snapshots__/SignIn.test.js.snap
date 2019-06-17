@@ -1,0 +1,113 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SignIn click button login 1`] = `
+<div>
+  <div
+    className="container"
+  >
+    <div
+      className="row"
+      style={
+        Object {
+          "marginTop": 50,
+        }
+      }
+    >
+      <div
+        className="col"
+      />
+      <div
+        className="col"
+      >
+        <form
+          className=""
+        >
+          <div
+            className="form-group"
+            onChange={[Function]}
+            value=""
+          >
+            <label
+              className="form-label"
+              htmlFor="username"
+            >
+              Username
+            </label>
+            <input
+              className="form-control"
+              id="username"
+              placeholder="Enter username"
+              type="text"
+            />
+            <small
+              className="text-muted form-text"
+            >
+              We'll never share your username with anyone else.
+            </small>
+          </div>
+          <div
+            className="form-group"
+            onChange={[Function]}
+            value=""
+          >
+            <label
+              className="form-label"
+              htmlFor="password"
+            >
+              Password
+            </label>
+            <input
+              className="form-control"
+              id="password"
+              placeholder="Password"
+              type="password"
+            />
+          </div>
+          <div
+            className="form-group"
+          >
+            <div
+              className="form-check"
+            >
+              <input
+                className="form-check-input"
+                disabled={false}
+                id="formBasicChecbox"
+                type="checkbox"
+              />
+              <label
+                className="form-check-label"
+                htmlFor="formBasicChecbox"
+                title=""
+                type="checkbox"
+              >
+                Check me out
+              </label>
+            </div>
+          </div>
+          <button
+            className="btn btn-primary"
+            disabled={false}
+            id="login-btn"
+            onClick={[Function]}
+            type="button"
+          >
+            Submit
+          </button>
+          <p>
+            
+          </p>
+          <a
+            onClick={[Function]}
+          >
+            Forgotten account?
+          </a>
+        </form>
+      </div>
+      <div
+        className="col"
+      />
+    </div>
+  </div>
+</div>
+`;

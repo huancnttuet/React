@@ -1,0 +1,74 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ChangePwd click button  1`] = `
+"<ChangePwd>
+  <div>
+    <Container as=\\"div\\" fluid={false}>
+      <div className=\\"container\\">
+        <Bootstrap(Row) style={{...}}>
+          <Row style={{...}} bsPrefix=\\"row\\" as=\\"div\\" noGutters={false}>
+            <div style={{...}} className=\\"row\\">
+              <Col as=\\"div\\">
+                <div className=\\"col\\" />
+              </Col>
+              <Col as=\\"div\\">
+                <div className=\\"col\\">
+                  <Form inline={false} as=\\"form\\">
+                    <form className=\\"\\">
+                      <FormGroup controlId=\\"formBasicChangePwd\\" value=\\"\\" onChange={[Function: handleChange]} as=\\"div\\">
+                        <div value=\\"\\" onChange={[Function: handleChange]} className=\\"form-group\\">
+                          <FormLabel column={false} srOnly={false}>
+                            <label htmlFor=\\"formBasicChangePwd\\" className=\\"form-label\\">
+                              Password
+                            </label>
+                          </FormLabel>
+                          <FormControl type=\\"password\\" placeholder=\\"Enter password\\" as=\\"input\\">
+                            <input placeholder=\\"Enter password\\" type=\\"password\\" readOnly={[undefined]} id=\\"formBasicChangePwd\\" className=\\"form-control\\" />
+                          </FormControl>
+                        </div>
+                      </FormGroup>
+                      <FormGroup controlId=\\"formBasicPassword1\\" value=\\"\\" onChange={[Function: handleChange]} as=\\"div\\">
+                        <div value=\\"\\" onChange={[Function: handleChange]} className=\\"form-group\\">
+                          <FormLabel column={false} srOnly={false}>
+                            <label htmlFor=\\"formBasicPassword1\\" className=\\"form-label\\">
+                              New Password
+                            </label>
+                          </FormLabel>
+                          <FormControl type=\\"password\\" placeholder=\\"Enter new password\\" as=\\"input\\">
+                            <input placeholder=\\"Enter new password\\" type=\\"password\\" readOnly={[undefined]} id=\\"formBasicPassword1\\" className=\\"form-control\\" />
+                          </FormControl>
+                        </div>
+                      </FormGroup>
+                      <FormGroup controlId=\\"formBasicPassword2\\" value=\\"\\" onChange={[Function: handleChange]} as=\\"div\\">
+                        <div value=\\"\\" onChange={[Function: handleChange]} className=\\"form-group\\">
+                          <FormLabel column={false} srOnly={false}>
+                            <label htmlFor=\\"formBasicPassword2\\" className=\\"form-label\\">
+                              Re-New Password
+                            </label>
+                          </FormLabel>
+                          <FormControl type=\\"password\\" placeholder=\\"Enter re-password\\" as=\\"input\\">
+                            <input placeholder=\\"Enter re-password\\" type=\\"password\\" readOnly={[undefined]} id=\\"formBasicPassword2\\" className=\\"form-control\\" />
+                          </FormControl>
+                        </div>
+                      </FormGroup>
+                      <Button variant=\\"primary\\" id=\\"cp-btn\\" onClick={[Function: handleClick]} active={false} disabled={false} type=\\"button\\">
+                        <button id=\\"cp-btn\\" onClick={[Function: handleClick]} disabled={false} type=\\"button\\" className=\\"btn btn-primary\\">
+                          Submit
+                        </button>
+                      </Button>
+                    </form>
+                  </Form>
+                  <p />
+                </div>
+              </Col>
+              <Col as=\\"div\\">
+                <div className=\\"col\\" />
+              </Col>
+            </div>
+          </Row>
+        </Bootstrap(Row)>
+      </div>
+    </Container>
+  </div>
+</ChangePwd>"
+`;
