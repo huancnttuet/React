@@ -29,13 +29,13 @@ exports[`SignIn click button login 1`] = `
           >
             <label
               className="form-label"
-              htmlFor="username"
+              htmlFor="username-signin"
             >
               Username
             </label>
             <input
               className="form-control"
-              id="username"
+              id="username-signin"
               placeholder="Enter username"
               type="text"
             />
@@ -52,13 +52,13 @@ exports[`SignIn click button login 1`] = `
           >
             <label
               className="form-label"
-              htmlFor="password"
+              htmlFor="password-signin"
             >
               Password
             </label>
             <input
               className="form-control"
-              id="password"
+              id="password-signin"
               placeholder="Password"
               type="password"
             />

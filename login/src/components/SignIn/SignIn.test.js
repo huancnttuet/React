@@ -21,10 +21,11 @@ describe('SignIn', () => {
     const wrapper1 = shallow(<SignIn />);
     const login = renderer.create(<SignIn />).toJSON();
     expect(login).toMatchSnapshot();
-    wrapper1.find('#username').simulate('change', {target: {
+    wrapper1.find('#username-signin').simulate('change', {target: {
       value: 'huanhuan'
     }})
-    wrapper1.find('#password').simulate('change', {target: {
+
+    wrapper1.find('#password-signin').simulate('change', {target: {
       value: '12'
     }})
     wrapper1.find('#login-btn').simulate('click')
