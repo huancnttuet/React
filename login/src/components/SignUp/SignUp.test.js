@@ -4,7 +4,6 @@ import App from "../App";
 import SignUp from "./SignUp";
 import { authServices } from "services";
 
-
 let wrapper;
 beforeEach(() => {
   wrapper = mount(<App />);
@@ -39,13 +38,15 @@ describe("SignUp", () => {
       .simulate("click");
     expect(loginMock).toHaveBeenCalled();
   });
-  test("test API", () => {
+  
+
+  it("test API signup", () => {
     const data = {
       usernameSignUp: `arsenal`,
       emailSignUp: `chelsea`
     };
-    return authServices.signup(data).then(data => {
-      expect(data.data).toMatchObject({ code: "EXIST" });
+    return authServices.signup(data).then(result => {
+      expect(result.data).toMatchObject({ code: "EXIST" });
     });
   });
   //

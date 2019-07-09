@@ -3,26 +3,23 @@ import { Form, Button, Col, Row, Container } from "react-bootstrap";
 import { authServices } from "services";
 
 function SignIn(props) {
-  const [global, setGlobal] = useGlobal();
+  const [authenticate, setAuthenticate] = useGlobal("authenticate");
+  const [id, setId] = useGlobal("id");
   const username = useFormInput("");
   const pwd = useFormInput("");
   const [message, setMessage] = useState("");
 
-  console.log(global);
   function handleClick() {
     var data = {
       usernameSignIn: username.value,
       pwdSignIn: pwd.value
     };
     authServices.login(data).then(res => {
-      console.log(res.data.login);
-      if (res.data.login) {
-        global.dispatch({
-          type: "LOGIN",
-          payload: res.data.id
-        });
+      setMessage(res.data.message);
+      if (res.data.code === "SUCCESS") {
+        setAuthenticate(true);
+        setId(res.data.result.id);
       } else {
-        setMessage(res.data.message);
       }
     });
   }
@@ -31,8 +28,7 @@ function SignIn(props) {
     props.history.push("/forgottenacc");
   };
 
-  console.log(global.state.authenticate);
-  if (global.state.authenticate === true) {
+  if (authenticate === true) {
     return (
       <>
         <h1>CHÀO MỪNG BẠN </h1>
@@ -43,7 +39,7 @@ function SignIn(props) {
       <div>
         <Container>
           <Row style={{ marginTop: 50 }}>
-            <Col>{props.authenticate}</Col>
+            <Col />
             <Col>
               <Form>
                 <Form.Group controlId="username-signin" {...username}>
@@ -65,7 +61,12 @@ function SignIn(props) {
                   Submit
                 </Button>
                 <p>{message}</p>
-                <a onClick={goToForgottenAccount}>Forgotten account?</a>
+                <div
+                  style={{ cursor: "pointer" }}
+                  onClick={goToForgottenAccount}
+                >
+                  Forgotten account?
+                </div>
               </Form>
             </Col>
             <Col />

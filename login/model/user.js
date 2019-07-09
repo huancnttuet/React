@@ -1,9 +1,9 @@
-const Sequelize = require('sequelize');
+const Sequelize = require("sequelize");
 
 // Option 1: Passing parameters separately
-const sequelize = new Sequelize('demo', 'root', '12345678', {
-  host: 'localhost',
-  dialect: 'mysql'/* one of 'mysql' | 'mariadb' | 'postgres' | 'mssql' */,
+const sequelize = new Sequelize("demo", "root", "12345678", {
+  host: "localhost",
+  dialect: "mysql" /* one of 'mysql' | 'mariadb' | 'postgres' | 'mssql' */,
   define: {
     timestamps: false
   }
@@ -11,20 +11,20 @@ const sequelize = new Sequelize('demo', 'root', '12345678', {
 sequelize
   .authenticate()
   .then(() => {
-    console.log('Connection has been established successfully.');
+    console.log("Connection has been established successfully.");
   })
   .catch(err => {
-    console.error('Unable to connect to the database:', err);
+    console.error("Unable to connect to the database:", err);
   });
 
-var User = sequelize.define('user', {
+var User = sequelize.define("user", {
   email: Sequelize.STRING,
   username: Sequelize.STRING,
   pwd: Sequelize.STRING
-})
+});
 
 module.exports = {
-  checkSignUp: async function (emailSignUp, usernameSignUp) {
+  checkSignUp: async function(emailSignUp, usernameSignUp) {
     // var checkSignUp = await sequelize.query(`SELECT COUNT(email) AS email FROM user WHERE email='${emailSignUp}' OR username='${usernameSignUp}'`).then(result => {
     //   if(result[0][0].email > 0){
     //     return false
@@ -33,18 +33,20 @@ module.exports = {
     // })
     // return checkSignUp;
     var checkSignUp = await User.findAll({
-      attributes: ['email'],
+      attributes: ["email"],
       where: {
         email: emailSignUp,
         username: usernameSignUp
       }
-    })
-    if(checkSignUp.length === 0){
-      return false
+    });
+    console.log("checking signup");
+    console.log(checkSignUp.length);
+    if (checkSignUp.length === 0) {
+      return false;
     }
-    return true
+    return true;
   },
-  createUser: async function (emailSignUp, usernameSignUp, pwdSignUp) {
+  createUser: async function(emailSignUp, usernameSignUp, pwdSignUp) {
     // var createUser = await sequelize.query(`INSERT INTO user(email,username,pwd) VALUES('${emailSignUp}','${usernameSignUp}','${pwdSignUp}') `).then(result => {
     //   console.log(result);
     //   if(result[1] === 1)
@@ -60,10 +62,10 @@ module.exports = {
       defaults: {
         pwd: pwdSignUp
       }
-    })
-    return createUser[1]
+    });
+    return createUser[1];
   },
-  checkSignIn: async function (usernameSignIn, pwdSignIn) {
+  checkSignIn: async function(usernameSignIn, pwdSignIn) {
     // var id = await sequelize.query(`SELECT id,username FROM user WHERE pwd='${pwdSignIn}' AND username='${usernameSignIn}'`).then(result => {
     //   console.log(result);
     //   if(result[0][0] != null){
@@ -73,18 +75,18 @@ module.exports = {
     // })
     // return id;
     var id = await User.findAll({
-      attributes: ['id', 'username'],
+      attributes: ["id", "username"],
       where: {
         pwd: pwdSignIn,
         username: usernameSignIn
       }
-    })
-    if(id.length === 0){
-      return 0
+    });
+    if (id.length === 0) {
+      return 0;
     }
-    return id[0].dataValues
+    return id[0].dataValues;
   },
-  changePwd: async function (id, pwd){
+  changePwd: async function(id, pwd) {
     // var updatePwd = await sequelize.query(`UPDATE user SET pwd='${pwd}' WHERE id='${id}'`).then(result => {
     //   if(result[0].changedRows === 1){
     //     return true
@@ -99,13 +101,13 @@ module.exports = {
           id: id
         }
       }
-    )
-    if(updatePwd[0] === 1){
-      return true
+    );
+    if (updatePwd[0] === 1) {
+      return true;
     }
-    return false
+    return false;
   },
-  checkIdPwd: async function ( id, pwd) {
+  checkIdPwd: async function(id, pwd) {
     // var rs = await sequelize.query(`SELECT id FROM user WHERE pwd='${pwd}' AND id='${id}'`).then(result => {
     //   console.log(result);
     //   if(result[0][0] != null){
@@ -115,17 +117,16 @@ module.exports = {
     // })
     // return rs;
     var rs = await User.findAll({
-      attributes: ['id'],
+      attributes: ["id"],
       where: {
         pwd: pwd,
         id: id
       }
-    })
-    if(rs.length === 0)
-      return false
-    return true
+    });
+    if (rs.length === 0) return false;
+    return true;
   },
-  checkEmailFA: async function ( emailFA ) {
+  checkEmailFA: async function(emailFA) {
     // var pwd = await sequelize.query(`SELECT pwd FROM user WHERE email='${emailFA}'`).then(result => {
     //   console.log(result);
     //   if(result[0][0] != null){
@@ -135,17 +136,17 @@ module.exports = {
     // })
     // return pwd
     var pwd = await User.findAll({
-      attributes: ['pwd'],
+      attributes: ["pwd"],
       where: {
         email: emailFA
       }
-    })
-    if(pwd.length === 0){
-      return null
+    });
+    if (pwd.length === 0) {
+      return null;
     }
-    return pwd[0].dataValues.pwd
+    return pwd[0].dataValues.pwd;
   },
-  test: async function (pwdSignIn, usernameSignIn) {
+  test: async function(pwdSignIn, usernameSignIn) {
     var updatePwd = await User.update(
       {
         pwd: pwdSignIn
@@ -155,7 +156,7 @@ module.exports = {
           username: usernameSignIn
         }
       }
-    )
+    );
     console.log(updatePwd);
   }
-}
+};

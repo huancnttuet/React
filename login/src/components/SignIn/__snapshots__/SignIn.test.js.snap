@@ -97,11 +97,16 @@ exports[`SignIn click button login 1`] = `
           <p>
             
           </p>
-          <a
+          <div
             onClick={[Function]}
+            style={
+              Object {
+                "cursor": "pointer",
+              }
+            }
           >
             Forgotten account?
-          </a>
+          </div>
         </form>
       </div>
       <div

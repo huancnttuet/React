@@ -3,6 +3,7 @@ import { Form, Button, Col, Row, Container } from "react-bootstrap";
 import { authServices } from "services";
 
 function SignUp(props) {
+  console.log(props);
   const emailSignUp = useFormInput("");
   const usernameSignUp = useFormInput("");
   const [stateSignUp, setStateSignUp] = useState("");

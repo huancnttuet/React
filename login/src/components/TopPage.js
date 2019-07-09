@@ -1,76 +1,105 @@
-import React from 'react';
-import {Navbar, Nav, NavDropdown} from 'react-bootstrap'
-import {useGlobal} from 'reactn'
-
+import React from "react";
+import { Navbar, Nav, NavDropdown } from "react-bootstrap";
+import { useGlobal } from "reactn";
+import { withRouter } from "react-router-dom";
 
 function TopPage(props) {
-    const [state, setState] = useGlobal('state')
-    const [dispatch, setDispatch] = useGlobal('dispatch')
-    console.log(state.id);
-    console.log(state);
-    console.log(dispatch);
-    var id = ''
-    if(state.id !== 0){
-      id = state.id
-    }
-    const pathHome=`http://localhost:3000/${id}`
-    const pathChangePwd = `/changepwd`
+  const [authenticate, setAuthenticate] = useGlobal("authenticate");
+  const [id, setId] = useGlobal("id");
+  // console.log(state.id);
+  // console.log(state);
+  // console.log(dispatch);
 
-    if(state.authenticate === true || state.authenticate === 'true'){
-      return (
-        <div>
-          <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-          <Navbar.Brand href={pathHome}>Demo</Navbar.Brand>
+  const goToHome = () => {
+    props.history.push("/");
+  };
+
+  const goToChangePwd = () => {
+    props.history.push("/changepwd");
+  };
+
+  const goToSignIn = () => {
+    props.history.push("/");
+  };
+  const goToSignUp = () => {
+    props.history.push("/signup");
+  };
+
+  if (authenticate === true || authenticate === "true") {
+    return (
+      <div>
+        <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+          <Navbar.Brand onClick={goToHome} style={{ cursor: "pointer" }}>
+            Demo
+          </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="mr-auto">
-              <Nav.Link href={pathHome}>Home</Nav.Link>
+              <Nav.Link onClick={goToHome}>Home</Nav.Link>
 
               <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
                 <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+                <NavDropdown.Item href="#action/3.2">
+                  Another action
+                </NavDropdown.Item>
+                <NavDropdown.Item href="#action/3.3">
+                  Something
+                </NavDropdown.Item>
                 <NavDropdown.Divider />
-                <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
+                <NavDropdown.Item href="#action/3.4">
+                  Separated link
+                </NavDropdown.Item>
               </NavDropdown>
             </Nav>
             <Nav>
-              <Nav.Link href="http://localhost:3000/" onClick={() => dispatch({type:'LOGOUT'})}>Logout</Nav.Link>
-              <Nav.Link href={pathChangePwd}>Change Password</Nav.Link>
+              <Nav.Link
+                onClick={() => {
+                  setAuthenticate(false);
+                  setId(0);
+                  goToHome();
+                }}
+              >
+                Logout
+              </Nav.Link>
+              <Nav.Link onClick={goToChangePwd}>Change Password</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Navbar>
-        </div>
-      )
-    } else {
-      return (
-        <div>
-          <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-          <Navbar.Brand href={pathHome}>Demo</Navbar.Brand>
+      </div>
+    );
+  } else {
+    return (
+      <div>
+        <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+          <Navbar.Brand onClick={goToHome}>Demo</Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="mr-auto">
-              <Nav.Link href={pathHome}>Home</Nav.Link>
+              <Nav.Link onClick={goToHome}>Home</Nav.Link>
 
               <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
                 <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+                <NavDropdown.Item href="#action/3.2">
+                  Another action
+                </NavDropdown.Item>
+                <NavDropdown.Item href="#action/3.3">
+                  Something
+                </NavDropdown.Item>
                 <NavDropdown.Divider />
-                <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
+                <NavDropdown.Item href="#action/3.4">
+                  Separated link
+                </NavDropdown.Item>
               </NavDropdown>
             </Nav>
             <Nav>
-              <Nav.Link href="http://localhost:3000/">Signin</Nav.Link>
-              <Nav.Link href="http://localhost:3000/signup">Signup</Nav.Link>
+              <Nav.Link onClick={goToSignIn}>Signin</Nav.Link>
+              <Nav.Link onClick={goToSignUp}>Signup</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Navbar>
-        </div>
-      )
-    }
-
+      </div>
+    );
+  }
 }
 
-
-export default TopPage
+export default withRouter(TopPage);
