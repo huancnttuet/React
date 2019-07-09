@@ -82,5 +82,68 @@ module.exports = {
         message: "user or mail exist"
       };
     }
+  },
+  changepwd: async (id, pwd, pwdNew) => {
+    if (await user.checkIdPwd(id, pwd)) {
+      if (await user.changePwd(id, pwdNew)) {
+        return {
+          code: "SUCCESS",
+          message: "Đổi mật khẩu thành công"
+        };
+      } else {
+        return {
+          code: "ERROR",
+          message: "Đã có lỗi xảy ra"
+        };
+      }
+    } else {
+      return {
+        code: "SAIPASS",
+        message: "Sai mật khẩu"
+      };
+    }
+  },
+  forgottenacc: async emailFA => {
+    var pwd = await user.checkEmailFA(emailFA);
+    const sendMail = pwd => {
+      var transporter = nodemailer.createTransport({
+        service: "Gmail",
+        auth: {
+          user: "huancnttuet@gmail.com",
+          pass: "341997mok"
+        }
+      });
+
+      var mailOptions = {
+        from: "huancnttuet@gmail.com",
+        to: "huancnttmta@gmail.com",
+        subject: "Forgotten Password demo",
+        text: `Yourpassword: ${pwd}`
+      };
+
+      transporter.sendMail(mailOptions, function(error, info) {
+        if (error) {
+          console.log(error);
+          return {
+            code: "ERROR",
+            message: "Lỗi trong quá trình gửi mail"
+          };
+        } else {
+          console.log("Email sent: Quen pass " + info.response);
+          return {
+            code: "SUCCESS",
+            message: "Pass đã được gửi lại về mail của bạn"
+          };
+        }
+      });
+    };
+    if (pwd !== null) {
+      sendMail(pwd);
+    } else {
+      return {
+        code: "NOTFOUND",
+        message: "Mail chưa được đăng ký"
+      };
+    }
   }
 };
