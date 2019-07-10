@@ -6,14 +6,14 @@ import { authServices } from "services";
 
 import renderer from "react-test-renderer";
 
-let wrapper;
-beforeEach(() => {
-  wrapper = mount(<App />);
-});
+// let wrapper;
+// beforeEach(() => {
+//   wrapper = mount(<App />);
+// });
 
-afterEach(() => {
-  wrapper.unmount();
-});
+// afterEach(() => {
+//   wrapper.unmount();
+// });
 
 describe("SignIn", () => {
   it("click button login", () => {
@@ -40,15 +40,5 @@ describe("SignIn", () => {
       .at(1)
       .simulate("click");
     expect(loginMock).toHaveBeenCalled();
-  });
-
-  test("test API", () => {
-    const data = {
-      usernameSignIn: `huanhuan`,
-      pwdSignIn: `1`
-    };
-    return authServices.login(data).then(data => {
-      expect(data.data).toMatchObject({ code: "SUCCESS" });
-    });
   });
 });

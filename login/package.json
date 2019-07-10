@@ -7,11 +7,8 @@
     "body-parser": "^1.19.0",
     "bootstrap": "^4.3.1",
     "cors": "^2.8.5",
-    "enzyme": "^3.9.0",
-    "enzyme-adapter-react-16": "^1.13.1",
     "express": "^4.16.4",
     "html-webpack-deploy-plugin": "^2.0.6",
-    "jest": "^20.0.4",
     "mailgun-js": "^0.22.0",
     "mysql2": "^1.6.5",
     "nodemailer": "^6.1.1",
@@ -47,6 +44,19 @@
       "last 1 chrome version",
       "last 1 firefox version",
       "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "babel-jest": "^24.8.0",
+    "babel-preset-env": "^1.7.0",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.14.0",
+    "enzyme-to-json": "^3.3.5",
+    "jest": "^24.8.0"
+  },
+  "jest": {
+    "setupFilesAfterEnv": [
+      "./setupTests.js"
     ]
   }
 }

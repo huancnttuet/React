@@ -40,8 +40,8 @@ describe("ForgottenAcc", () => {
     const data = {
       emailFA: `arsenal`
     };
-    return authServices.forgottenacc(data).then(data => {
-      expect(data.data).toMatchObject({
+    return authServices.forgottenacc(data).then(result => {
+      expect(result.data).toMatchObject({
         code: "ERROR",
         message: "Lỗi trong quá trình gửi mail"
       });

@@ -1,6 +1,6 @@
 var user = require("../model/user.js");
-var nodemailer = require("nodemailer");
-
+var sendMail = require("../helper/sendmail.js");
+var createPwdSignUp = require("../helper/createPwdRamdom.js");
 module.exports = {
   signin: async (usernameSignIn, pwdSignIn) => {
     var valueSignIn = await user.checkSignIn(usernameSignIn, pwdSignIn);
@@ -24,48 +24,12 @@ module.exports = {
     }
   },
   signup: async (emailSignUp, usernameSignUp) => {
-    const sendMail = pwd => {
-      var transporter = nodemailer.createTransport({
-        service: "Gmail",
-        auth: {
-          user: "huancnttuet@gmail.com",
-          pass: "341997mok"
-        }
-      });
-
-      var mailOptions = {
-        from: "huancnttuet@gmail.com",
-        to: "huancnttmta@gmail.com",
-        subject: "Password demo",
-        text: `Yourpassword: ${pwd}`
-      };
-
-      transporter.sendMail(mailOptions, function(error, info) {
-        if (error) {
-          console.log(error);
-        } else {
-          console.log("Email sent: " + info.response);
-        }
-      });
-    };
-    const createPwdSignUp = () => {
-      var length = 8,
-        charset =
-          "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
-        retVal = "";
-      for (var i = 0, n = charset.length; i < length; ++i) {
-        retVal += charset.charAt(Math.floor(Math.random() * n));
-      }
-      return retVal;
-    };
-
     var checkSU = await user.checkSignUp(emailSignUp, usernameSignUp);
     console.log(checkSU);
     if (!checkSU) {
       var pwdSignUp = createPwdSignUp();
-
       if (await user.createUser(emailSignUp, usernameSignUp, pwdSignUp)) {
-        sendMail(pwdSignUp);
+        sendMail.sendMailPwd(pwdSignUp);
         return {
           code: "SUCCESS",
           message: "create new user success"
@@ -105,40 +69,13 @@ module.exports = {
   },
   forgottenacc: async emailFA => {
     var pwd = await user.checkEmailFA(emailFA);
-    const sendMail = pwd => {
-      var transporter = nodemailer.createTransport({
-        service: "Gmail",
-        auth: {
-          user: "huancnttuet@gmail.com",
-          pass: "341997mok"
-        }
-      });
 
-      var mailOptions = {
-        from: "huancnttuet@gmail.com",
-        to: "huancnttmta@gmail.com",
-        subject: "Forgotten Password demo",
-        text: `Yourpassword: ${pwd}`
-      };
-
-      transporter.sendMail(mailOptions, function(error, info) {
-        if (error) {
-          console.log(error);
-          return {
-            code: "ERROR",
-            message: "Lỗi trong quá trình gửi mail"
-          };
-        } else {
-          console.log("Email sent: Quen pass " + info.response);
-          return {
-            code: "SUCCESS",
-            message: "Pass đã được gửi lại về mail của bạn"
-          };
-        }
-      });
-    };
     if (pwd !== null) {
-      sendMail(pwd);
+      sendMail.sendMailForgottenPwd(pwd);
+      return {
+        code: "SUCCESS",
+        message: "Đã gửi password tới mail"
+      };
     } else {
       return {
         code: "NOTFOUND",
