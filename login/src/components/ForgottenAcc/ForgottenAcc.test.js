@@ -36,15 +36,15 @@ describe("ForgottenAcc", () => {
     expect(loginMock).toHaveBeenCalled();
   });
 
-  test("test API forgotten acc", () => {
-    const data = {
-      emailFA: `arsenal`
-    };
-    return authServices.forgottenacc(data).then(result => {
-      expect(result.data).toMatchObject({
-        code: "ERROR",
-        message: "Lỗi trong quá trình gửi mail"
-      });
-    });
-  });
+  // test("test API forgotten acc", () => {
+  //   const data = {
+  //     emailFA: `arsenal`
+  //   };
+  //   return authServices.forgottenacc(data).then(result => {
+  //     expect(result.data).toMatchObject({
+  //       code: "ERROR",
+  //       message: "Lỗi trong quá trình gửi mail"
+  //     });
+  //   });
+  // });
 });

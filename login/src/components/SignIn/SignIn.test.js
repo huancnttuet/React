@@ -6,14 +6,14 @@ import { authServices } from "services";
 
 import renderer from "react-test-renderer";
 
-// let wrapper;
-// beforeEach(() => {
-//   wrapper = mount(<App />);
-// });
+let wrapper;
+beforeEach(() => {
+  wrapper = mount(<App />);
+});
 
-// afterEach(() => {
-//   wrapper.unmount();
-// });
+afterEach(() => {
+  wrapper.unmount();
+});
 
 describe("SignIn", () => {
   it("click button login", () => {

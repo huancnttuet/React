@@ -38,16 +38,15 @@ describe("SignUp", () => {
       .simulate("click");
     expect(loginMock).toHaveBeenCalled();
   });
-  
 
-  it("test API signup", () => {
-    const data = {
-      usernameSignUp: `arsenal`,
-      emailSignUp: `chelsea`
-    };
-    return authServices.signup(data).then(result => {
-      expect(result.data).toMatchObject({ code: "EXIST" });
-    });
-  });
-  //
+  // it("test API signup", () => {
+  //   const data = {
+  //     usernameSignUp: `arsenal`,
+  //     emailSignUp: `chelsea`
+  //   };
+  //   return authServices.signup(data).then(result => {
+  //     expect(result.data).toMatchObject({ code: "EXIST" });
+  //   });
+  // });
+  // //
 });

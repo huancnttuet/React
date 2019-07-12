@@ -44,14 +44,14 @@ describe("ChangePwd", () => {
     expect(loginMock).toHaveBeenCalled();
   });
 
-  test("test API change pwd ", () => {
-    const data = {
-      id: "4",
-      pwd: "12",
-      pwdNew: "1"
-    };
-    return authServices.changepwd(data).then(data => {
-      expect(data.data).toMatchObject({ code: "SAIPASS" });
-    });
-  });
+  // test("test API change pwd ", () => {
+  //   const data = {
+  //     id: "4",
+  //     pwd: "12",
+  //     pwdNew: "1"
+  //   };
+  //   return authServices.changepwd(data).then(data => {
+  //     expect(data.data).toMatchObject({ code: "SAIPASS" });
+  //   });
+  // });
 });

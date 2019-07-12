@@ -6,7 +6,7 @@ module.exports = {
       service: "Gmail",
       auth: {
         user: "huancnttuet@gmail.com",
-        pass: "341997mok"
+        pass: "341997Mok@"
       }
     });
 
@@ -30,7 +30,7 @@ module.exports = {
       service: "Gmail",
       auth: {
         user: "huancnttuet@gmail.com",
-        pass: "341997mok"
+        pass: "341997Mok@"
       }
     });
 

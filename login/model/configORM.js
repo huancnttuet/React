@@ -16,5 +16,5 @@ sequelize
   .catch(err => {
     console.error("Unable to connect to the database:", err);
   });
-
+sequelize.query("SET autocommit=0;");
 module.exports = sequelize;
