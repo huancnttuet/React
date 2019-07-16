@@ -16,7 +16,7 @@ module.exports = {
     //   return true
     // })
     // return checkSignUp;
-    require("./configORM.js");
+
     var checkSignUp = await User.findAll({
       attributes: ["email"],
       where: {
@@ -24,7 +24,7 @@ module.exports = {
         username: usernameSignUp
       }
     });
-    sequelize.close();
+
     if (checkSignUp.length === 0) {
       return false;
     }
@@ -38,7 +38,7 @@ module.exports = {
     //   return false
     // })
     // return createUser
-    require("./configORM.js");
+
     var createUser = await User.findOrCreate({
       where: {
         email: emailSignUp,
@@ -48,7 +48,7 @@ module.exports = {
         pwd: pwdSignUp
       }
     });
-    sequelize.close();
+
     return createUser[1];
   },
   checkSignIn: async function(usernameSignIn, pwdSignIn) {
@@ -60,7 +60,7 @@ module.exports = {
     //   return 0
     // })
     // return id;
-    require("./configORM.js");
+
     var id = await User.findAll({
       attributes: ["id", "username"],
       where: {
@@ -68,7 +68,7 @@ module.exports = {
         username: usernameSignIn
       }
     });
-    sequelize.close();
+
     if (id.length === 0) {
       return 0;
     }
@@ -82,7 +82,7 @@ module.exports = {
     //   return false
     // })
     // return updatePwd
-    require("./configORM.js");
+
     var updatePwd = await User.update(
       { pwd: pwd },
       {
@@ -91,7 +91,7 @@ module.exports = {
         }
       }
     );
-    sequelize.close();
+
     if (updatePwd[0] === 1) {
       return true;
     }
@@ -106,7 +106,7 @@ module.exports = {
     //   return false
     // })
     // return rs;
-    require("./configORM.js");
+
     var rs = await User.findAll({
       attributes: ["id"],
       where: {
@@ -114,7 +114,7 @@ module.exports = {
         id: id
       }
     });
-    sequelize.close();
+
     if (rs.length === 0) return false;
     return true;
   },
@@ -127,14 +127,14 @@ module.exports = {
     //   return null
     // })
     // return pwd
-    require("./configORM.js");
+
     var pwd = await User.findAll({
       attributes: ["pwd"],
       where: {
         email: emailFA
       }
     });
-    sequelize.close();
+
     if (pwd.length === 0) {
       return null;
     }

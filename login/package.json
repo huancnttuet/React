@@ -6,10 +6,13 @@
     "axios": "^0.18.0",
     "body-parser": "^1.19.0",
     "bootstrap": "^4.3.1",
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
     "cors": "^2.8.5",
     "express": "^4.16.4",
     "html-webpack-deploy-plugin": "^2.0.6",
     "mailgun-js": "^0.22.0",
+    "mocha": "^6.1.4",
     "mysql2": "^1.6.5",
     "nodemailer": "^6.1.1",
     "react": "^16.0.0-alpha.12",
@@ -52,7 +55,8 @@
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
     "enzyme-to-json": "^3.3.5",
-    "jest": "^24.8.0"
+    "jest": "^24.8.0",
+    "should": "^13.2.3"
   },
   "jest": {
     "setupFilesAfterEnv": [
