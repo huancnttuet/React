@@ -4,12 +4,19 @@ import {useGlobal} from 'reactn'
 
 
 function TopPage(props) {
-    const [global, setGlobal] = useGlobal()
+    const [state, setState] = useGlobal('state')
+    const [dispatch, setDispatch] = useGlobal('dispatch')
+    console.log(state.id);
+    console.log(state);
+    console.log(dispatch);
+    var id = ''
+    if(state.id !== 0){
+      id = state.id
+    }
+    const pathHome=`http://localhost:3000/${id}`
+    const pathChangePwd = `/changepwd`
 
-    const pathHome=`http://localhost:3000/${global.state.id}`
-    const pathChangePwd = `${pathHome}/changepwd`
-
-    if(props.type === 'logout'){
+    if(state.authenticate === true || state.authenticate === 'true'){
       return (
         <div>
           <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -28,7 +35,7 @@ function TopPage(props) {
               </NavDropdown>
             </Nav>
             <Nav>
-              <Nav.Link href="http://localhost:3000/" onClick={() => global.dispatch({type:'LOGOUT'})}>Logout</Nav.Link>
+              <Nav.Link href="http://localhost:3000/" onClick={() => dispatch({type:'LOGOUT'})}>Logout</Nav.Link>
               <Nav.Link href={pathChangePwd}>Change Password</Nav.Link>
             </Nav>
           </Navbar.Collapse>

@@ -1,0 +1,330 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<MyComponent /> renders <SignIn /> components 1`] = `
+"<SignIn>
+  <div>
+    <Container as=\\"div\\" fluid={false}>
+      <div className=\\"container\\">
+        <Bootstrap(Row) style={{...}}>
+          <Row style={{...}} bsPrefix=\\"row\\" as=\\"div\\" noGutters={false}>
+            <div style={{...}} className=\\"row\\">
+              <Col as=\\"div\\">
+                <div className=\\"col\\" />
+              </Col>
+              <Col as=\\"div\\">
+                <div className=\\"col\\">
+                  <Form inline={false} as=\\"form\\">
+                    <form className=\\"\\">
+                      <FormGroup controlId=\\"form-basic-username\\" value=\\"huanhuan\\" onChange={[Function: handleChange]} as=\\"div\\">
+                        <div value=\\"huanhuan\\" onChange={[Function: handleChange]} className=\\"form-group\\">
+                          <FormLabel column={false} srOnly={false}>
+                            <label htmlFor=\\"form-basic-username\\" className=\\"form-label\\">
+                              Username
+                            </label>
+                          </FormLabel>
+                          <FormControl type=\\"text\\" placeholder=\\"Enter username\\" as=\\"input\\">
+                            <input placeholder=\\"Enter username\\" type=\\"text\\" readOnly={[undefined]} id=\\"form-basic-username\\" className=\\"form-control\\" />
+                          </FormControl>
+                          <FormText className=\\"text-muted\\" as=\\"small\\">
+                            <small className=\\"text-muted form-text\\">
+                              We&#39;ll never share your username with anyone else.
+                            </small>
+                          </FormText>
+                        </div>
+                      </FormGroup>
+                      <FormGroup controlId=\\"formBasicPassword\\" value=\\"12\\" onChange={[Function: handleChange]} as=\\"div\\">
+                        <div value=\\"12\\" onChange={[Function: handleChange]} className=\\"form-group\\">
+                          <FormLabel column={false} srOnly={false}>
+                            <label htmlFor=\\"formBasicPassword\\" className=\\"form-label\\">
+                              Password
+                            </label>
+                          </FormLabel>
+                          <FormControl type=\\"password\\" placeholder=\\"Password\\" as=\\"input\\">
+                            <input placeholder=\\"Password\\" type=\\"password\\" readOnly={[undefined]} id=\\"formBasicPassword\\" className=\\"form-control\\" />
+                          </FormControl>
+                        </div>
+                      </FormGroup>
+                      <FormGroup controlId=\\"formBasicChecbox\\" as=\\"div\\">
+                        <div className=\\"form-group\\">
+                          <FormCheck type=\\"checkbox\\" label=\\"Check me out\\" inline={false} disabled={false} isValid={false} isInvalid={false} title=\\"\\">
+                            <div style={[undefined]} className=\\"form-check\\">
+                              <FormCheckInput type=\\"checkbox\\" isValid={false} isInvalid={false} isStatic={false} disabled={false}>
+                                <input type=\\"checkbox\\" disabled={false} id=\\"formBasicChecbox\\" className=\\"form-check-input\\" />
+                              </FormCheckInput>
+                              <FormCheckLabel title=\\"\\" type=\\"checkbox\\">
+                                <label title=\\"\\" type=\\"checkbox\\" htmlFor=\\"formBasicChecbox\\" className=\\"form-check-label\\">
+                                  Check me out
+                                </label>
+                              </FormCheckLabel>
+                            </div>
+                          </FormCheck>
+                        </div>
+                      </FormGroup>
+                      <Button variant=\\"primary\\" id=\\"login-btn\\" onClick={[Function: handleClick]} active={false} disabled={false} type=\\"button\\">
+                        <button id=\\"login-btn\\" onClick={[Function: handleClick]} disabled={false} type=\\"button\\" className=\\"btn btn-primary\\">
+                          Submit
+                        </button>
+                      </Button>
+                      <p />
+                      <a href=\\"http://localhost:3000/forgottenacc\\">
+                        Forgotten account?
+                      </a>
+                    </form>
+                  </Form>
+                </div>
+              </Col>
+              <Col as=\\"div\\">
+                <div className=\\"col\\" />
+              </Col>
+            </div>
+          </Row>
+        </Bootstrap(Row)>
+      </div>
+    </Container>
+  </div>
+</SignIn>"
+`;
+
+exports[`<MyComponent /> renders <TopPage /> components 1`] = `
+"<App>
+  <BrowserRouter>
+    <Router history={{...}}>
+      <TopPage>
+        <div>
+          <Bootstrap(undefined) collapseOnSelect={true} expand=\\"lg\\" bg=\\"dark\\" variant=\\"dark\\">
+            <ForwardRef collapseOnSelect={true} expand=\\"lg\\" bg=\\"dark\\" variant=\\"dark\\" innerRef={{...}} bsPrefix=\\"navbar\\">
+              <Uncontrolled(Navbar) collapseOnSelect={true} expand=\\"lg\\" bg=\\"dark\\" variant=\\"dark\\" innerRef={{...}} bsPrefix=\\"navbar\\">
+                <Navbar collapseOnSelect={true} expand=\\"lg\\" bg=\\"dark\\" variant=\\"dark\\" bsPrefix=\\"navbar\\" expanded={[undefined]} onToggle={[Function: handleChange]} as=\\"nav\\">
+                  <nav className=\\"navbar navbar-expand-lg navbar-dark bg-dark\\">
+                    <NavbarBrand href=\\"http://localhost:3000/null\\">
+                      <a href=\\"http://localhost:3000/null\\" className=\\"navbar-brand\\">
+                        Demo
+                      </a>
+                    </NavbarBrand>
+                    <NavbarToggle aria-controls=\\"responsive-navbar-nav\\" label=\\"Toggle navigation\\" as=\\"button\\">
+                      <button aria-controls=\\"responsive-navbar-nav\\" type=\\"button\\" onClick={[Function]} aria-label=\\"Toggle navigation\\" className=\\"navbar-toggler\\">
+                        <span className=\\"navbar-toggler-icon\\" />
+                      </button>
+                    </NavbarToggle>
+                    <NavbarCollapse id=\\"responsive-navbar-nav\\">
+                      <Collapse in={false} id=\\"responsive-navbar-nav\\" timeout={300} mountOnEnter={false} unmountOnExit={false} appear={false} dimension=\\"height\\" getDimensionValue={[Function: getDimensionValue]}>
+                        <Transition addEndListener={[Function: onEnd]} in={false} id=\\"responsive-navbar-nav\\" timeout={300} mountOnEnter={false} unmountOnExit={false} appear={false} aria-expanded={{...}} onEnter={[Function]} onEntering={[Function]} onEntered={[Function]} onExit={[Function]} onExiting={[Function]} enter={true} exit={true} onExited={[Function: noop]}>
+                          <div className=\\"navbar-collapse collapse\\" id=\\"responsive-navbar-nav\\" aria-expanded={{...}}>
+                            <Nav className=\\"mr-auto\\" justify={false} fill={false} as=\\"div\\">
+                              <ContextTransform(AbstractNav) as=\\"div\\" activeKey={[undefined]} className=\\"mr-auto navbar-nav\\" onSelect={[Function]}>
+                                <AbstractNav as=\\"div\\" activeKey={[undefined]} className=\\"mr-auto navbar-nav\\" onSelect={[Function]} parentOnSelect={[Function]}>
+                                  <div className=\\"mr-auto navbar-nav\\" onKeyDown={[Function]}>
+                                    <NavLink href=\\"http://localhost:3000/null\\" disabled={false} as={[Function: SafeAnchor]}>
+                                      <ForwardRef href=\\"http://localhost:3000/null\\" eventKey={[undefined]} as={[Function: SafeAnchor]} disabled={false} onSelect={[undefined]} className=\\"nav-link\\">
+                                        <SafeAnchor href=\\"http://localhost:3000/null\\" disabled={false} data-rb-event-key=\\"http://localhost:3000/null\\" id={[undefined]} aria-controls={[undefined]} onClick={[Function]} className=\\"nav-link\\" as=\\"a\\">
+                                          <a href=\\"http://localhost:3000/null\\" data-rb-event-key=\\"http://localhost:3000/null\\" id={[undefined]} aria-controls={[undefined]} onClick={[Function: bound handleClick]} className=\\"nav-link\\" onKeyDown={[Function: bound handleKeyDown]}>
+                                            Home
+                                          </a>
+                                        </SafeAnchor>
+                                      </ForwardRef>
+                                    </NavLink>
+                                    <NavDropdown title=\\"Dropdown\\" id=\\"collasible-nav-dropdown\\">
+                                      <Dropdown as={{...}} navbar={false}>
+                                        <ReactOverlaysDropdown drop={[undefined]} show={[undefined]} alignEnd={[undefined]} onToggle={[Function]} focusFirstItemOnShow={[undefined]} itemSelector=\\".dropdown-item:not(.disabled):not(:disabled)\\">
+                                          <Manager>
+                                            <NavItem onKeyDown={[Function]} className=\\"dropdown\\" as=\\"div\\">
+                                              <div onKeyDown={[Function]} className=\\"dropdown nav-item\\">
+                                                <Bootstrap(DropdownToggle) id=\\"collasible-nav-dropdown\\" eventKey={{...}} active={[undefined]} disabled={[undefined]} childBsPrefix={[undefined]} as={{...}}>
+                                                  <DropdownToggle id=\\"collasible-nav-dropdown\\" eventKey={{...}} active={[undefined]} disabled={[undefined]} childBsPrefix={[undefined]} as={{...}} bsPrefix=\\"dropdown-toggle\\">
+                                                    <ReactOverlaysDropdownToggle>
+                                                      <NavLink onClick={[Function]} className=\\"dropdown-toggle\\" aria-haspopup={true} aria-expanded={false} id=\\"collasible-nav-dropdown\\" eventKey={{...}} active={[undefined]} disabled={false} as={[Function: SafeAnchor]}>
+                                                        <ForwardRef onClick={[Function]} aria-haspopup={true} aria-expanded={false} id=\\"collasible-nav-dropdown\\" active={[undefined]} href={[undefined]} eventKey={{...}} as={[Function: SafeAnchor]} disabled={false} onSelect={[undefined]} className=\\"dropdown-toggle nav-link\\">
+                                                          <SafeAnchor aria-haspopup={true} aria-expanded={false} id={[undefined]} href={[undefined]} disabled={false} data-rb-event-key={{...}} aria-controls={[undefined]} onClick={[Function]} className=\\"dropdown-toggle nav-link\\" as=\\"a\\">
+                                                            <a aria-haspopup={true} aria-expanded={false} id={[undefined]} href=\\"#\\" data-rb-event-key={{...}} aria-controls={[undefined]} onClick={[Function: bound handleClick]} className=\\"dropdown-toggle nav-link\\" role=\\"button\\" onKeyDown={[Function: bound handleKeyDown]}>
+                                                              Dropdown
+                                                            </a>
+                                                          </SafeAnchor>
+                                                        </ForwardRef>
+                                                      </NavLink>
+                                                    </ReactOverlaysDropdownToggle>
+                                                  </DropdownToggle>
+                                                </Bootstrap(DropdownToggle)>
+                                                <DropdownMenu role={[undefined]} rootCloseEvent={[undefined]} alignRight={false} as=\\"div\\" flip={true}>
+                                                  <ForwardRef(ContextTransform(DropdownMenu)) flip={true} show={[undefined]} alignEnd={false} usePopper={false} popperConfig={[undefined]} rootCloseEvent={[undefined]}>
+                                                    <ReactOverlaysDropdownMenu flip={true} show={[undefined]} alignEnd={false} usePopper={false} popperConfig={[undefined]} rootCloseEvent={[undefined]} drop={[undefined]} menuRef={[Function: menuRef]} toggleNode={{...}} onToggle={[Function]}>
+                                                      <RootCloseWrapper disabled={true} event=\\"click\\" onRootClose={[Function]}>
+                                                        <div role={[undefined]} aria-labelledby=\\"\\" style={[undefined]} className=\\"dropdown-menu\\">
+                                                          <DropdownItem href=\\"#action/3.1\\" as={[Function: SafeAnchor]} disabled={false}>
+                                                            <SafeAnchor href=\\"#action/3.1\\" disabled={false} className=\\"dropdown-item\\" onClick={[Function]} as=\\"a\\">
+                                                              <a href=\\"#action/3.1\\" className=\\"dropdown-item\\" onClick={[Function: bound handleClick]} onKeyDown={[Function: bound handleKeyDown]}>
+                                                                Action
+                                                              </a>
+                                                            </SafeAnchor>
+                                                          </DropdownItem>
+                                                          <DropdownItem href=\\"#action/3.2\\" as={[Function: SafeAnchor]} disabled={false}>
+                                                            <SafeAnchor href=\\"#action/3.2\\" disabled={false} className=\\"dropdown-item\\" onClick={[Function]} as=\\"a\\">
+                                                              <a href=\\"#action/3.2\\" className=\\"dropdown-item\\" onClick={[Function: bound handleClick]} onKeyDown={[Function: bound handleKeyDown]}>
+                                                                Another action
+                                                              </a>
+                                                            </SafeAnchor>
+                                                          </DropdownItem>
+                                                          <DropdownItem href=\\"#action/3.3\\" as={[Function: SafeAnchor]} disabled={false}>
+                                                            <SafeAnchor href=\\"#action/3.3\\" disabled={false} className=\\"dropdown-item\\" onClick={[Function]} as=\\"a\\">
+                                                              <a href=\\"#action/3.3\\" className=\\"dropdown-item\\" onClick={[Function: bound handleClick]} onKeyDown={[Function: bound handleKeyDown]}>
+                                                                Something
+                                                              </a>
+                                                            </SafeAnchor>
+                                                          </DropdownItem>
+                                                          <DropdownDivider role=\\"separator\\">
+                                                            <div className=\\"dropdown-divider\\" role=\\"separator\\" />
+                                                          </DropdownDivider>
+                                                          <DropdownItem href=\\"#action/3.4\\" as={[Function: SafeAnchor]} disabled={false}>
+                                                            <SafeAnchor href=\\"#action/3.4\\" disabled={false} className=\\"dropdown-item\\" onClick={[Function]} as=\\"a\\">
+                                                              <a href=\\"#action/3.4\\" className=\\"dropdown-item\\" onClick={[Function: bound handleClick]} onKeyDown={[Function: bound handleKeyDown]}>
+                                                                Separated link
+                                                              </a>
+                                                            </SafeAnchor>
+                                                          </DropdownItem>
+                                                        </div>
+                                                      </RootCloseWrapper>
+                                                    </ReactOverlaysDropdownMenu>
+                                                  </ForwardRef(ContextTransform(DropdownMenu))>
+                                                </DropdownMenu>
+                                              </div>
+                                            </NavItem>
+                                          </Manager>
+                                        </ReactOverlaysDropdown>
+                                      </Dropdown>
+                                    </NavDropdown>
+                                  </div>
+                                </AbstractNav>
+                              </ContextTransform(AbstractNav)>
+                            </Nav>
+                            <Nav justify={false} fill={false} as=\\"div\\">
+                              <ContextTransform(AbstractNav) as=\\"div\\" activeKey={[undefined]} className=\\"navbar-nav\\" onSelect={[Function]}>
+                                <AbstractNav as=\\"div\\" activeKey={[undefined]} className=\\"navbar-nav\\" onSelect={[Function]} parentOnSelect={[Function]}>
+                                  <div className=\\"navbar-nav\\" onKeyDown={[Function]}>
+                                    <NavLink href=\\"http://localhost:3000/\\" disabled={false} as={[Function: SafeAnchor]}>
+                                      <ForwardRef href=\\"http://localhost:3000/\\" eventKey={[undefined]} as={[Function: SafeAnchor]} disabled={false} onSelect={[undefined]} className=\\"nav-link\\">
+                                        <SafeAnchor href=\\"http://localhost:3000/\\" disabled={false} data-rb-event-key=\\"http://localhost:3000/\\" id={[undefined]} aria-controls={[undefined]} onClick={[Function]} className=\\"nav-link\\" as=\\"a\\">
+                                          <a href=\\"http://localhost:3000/\\" data-rb-event-key=\\"http://localhost:3000/\\" id={[undefined]} aria-controls={[undefined]} onClick={[Function: bound handleClick]} className=\\"nav-link\\" onKeyDown={[Function: bound handleKeyDown]}>
+                                            Signin
+                                          </a>
+                                        </SafeAnchor>
+                                      </ForwardRef>
+                                    </NavLink>
+                                    <NavLink href=\\"http://localhost:3000/signup\\" disabled={false} as={[Function: SafeAnchor]}>
+                                      <ForwardRef href=\\"http://localhost:3000/signup\\" eventKey={[undefined]} as={[Function: SafeAnchor]} disabled={false} onSelect={[undefined]} className=\\"nav-link\\">
+                                        <SafeAnchor href=\\"http://localhost:3000/signup\\" disabled={false} data-rb-event-key=\\"http://localhost:3000/signup\\" id={[undefined]} aria-controls={[undefined]} onClick={[Function]} className=\\"nav-link\\" as=\\"a\\">
+                                          <a href=\\"http://localhost:3000/signup\\" data-rb-event-key=\\"http://localhost:3000/signup\\" id={[undefined]} aria-controls={[undefined]} onClick={[Function: bound handleClick]} className=\\"nav-link\\" onKeyDown={[Function: bound handleKeyDown]}>
+                                            Signup
+                                          </a>
+                                        </SafeAnchor>
+                                      </ForwardRef>
+                                    </NavLink>
+                                  </div>
+                                </AbstractNav>
+                              </ContextTransform(AbstractNav)>
+                            </Nav>
+                          </div>
+                        </Transition>
+                      </Collapse>
+                    </NavbarCollapse>
+                  </nav>
+                </Navbar>
+              </Uncontrolled(Navbar)>
+            </ForwardRef>
+          </Bootstrap(undefined)>
+        </div>
+      </TopPage>
+      <div>
+        <Route exact={true} path=\\"/null\\" component={[Function: Home]} />
+        <Route exact={true} path=\\"/\\" component={[Function: component]}>
+          <component history={{...}} location={{...}} match={{...}} staticContext={[undefined]}>
+            <SignIn authenticate={{...}}>
+              <div>
+                <Container as=\\"div\\" fluid={false}>
+                  <div className=\\"container\\">
+                    <Bootstrap(Row) style={{...}}>
+                      <Row style={{...}} bsPrefix=\\"row\\" as=\\"div\\" noGutters={false}>
+                        <div style={{...}} className=\\"row\\">
+                          <Col as=\\"div\\">
+                            <div className=\\"col\\" />
+                          </Col>
+                          <Col as=\\"div\\">
+                            <div className=\\"col\\">
+                              <Form inline={false} as=\\"form\\">
+                                <form className=\\"\\">
+                                  <FormGroup controlId=\\"form-basic-username\\" value=\\"\\" onChange={[Function: handleChange]} as=\\"div\\">
+                                    <div value=\\"\\" onChange={[Function: handleChange]} className=\\"form-group\\">
+                                      <FormLabel column={false} srOnly={false}>
+                                        <label htmlFor=\\"form-basic-username\\" className=\\"form-label\\">
+                                          Username
+                                        </label>
+                                      </FormLabel>
+                                      <FormControl type=\\"text\\" placeholder=\\"Enter username\\" as=\\"input\\">
+                                        <input placeholder=\\"Enter username\\" type=\\"text\\" readOnly={[undefined]} id=\\"form-basic-username\\" className=\\"form-control\\" />
+                                      </FormControl>
+                                      <FormText className=\\"text-muted\\" as=\\"small\\">
+                                        <small className=\\"text-muted form-text\\">
+                                          We&#39;ll never share your username with anyone else.
+                                        </small>
+                                      </FormText>
+                                    </div>
+                                  </FormGroup>
+                                  <FormGroup controlId=\\"formBasicPassword\\" value=\\"\\" onChange={[Function: handleChange]} as=\\"div\\">
+                                    <div value=\\"\\" onChange={[Function: handleChange]} className=\\"form-group\\">
+                                      <FormLabel column={false} srOnly={false}>
+                                        <label htmlFor=\\"formBasicPassword\\" className=\\"form-label\\">
+                                          Password
+                                        </label>
+                                      </FormLabel>
+                                      <FormControl type=\\"password\\" placeholder=\\"Password\\" as=\\"input\\">
+                                        <input placeholder=\\"Password\\" type=\\"password\\" readOnly={[undefined]} id=\\"formBasicPassword\\" className=\\"form-control\\" />
+                                      </FormControl>
+                                    </div>
+                                  </FormGroup>
+                                  <FormGroup controlId=\\"formBasicChecbox\\" as=\\"div\\">
+                                    <div className=\\"form-group\\">
+                                      <FormCheck type=\\"checkbox\\" label=\\"Check me out\\" inline={false} disabled={false} isValid={false} isInvalid={false} title=\\"\\">
+                                        <div style={[undefined]} className=\\"form-check\\">
+                                          <FormCheckInput type=\\"checkbox\\" isValid={false} isInvalid={false} isStatic={false} disabled={false}>
+                                            <input type=\\"checkbox\\" disabled={false} id=\\"formBasicChecbox\\" className=\\"form-check-input\\" />
+                                          </FormCheckInput>
+                                          <FormCheckLabel title=\\"\\" type=\\"checkbox\\">
+                                            <label title=\\"\\" type=\\"checkbox\\" htmlFor=\\"formBasicChecbox\\" className=\\"form-check-label\\">
+                                              Check me out
+                                            </label>
+                                          </FormCheckLabel>
+                                        </div>
+                                      </FormCheck>
+                                    </div>
+                                  </FormGroup>
+                                  <Button variant=\\"primary\\" id=\\"login-btn\\" onClick={[Function: handleClick]} active={false} disabled={false} type=\\"button\\">
+                                    <button id=\\"login-btn\\" onClick={[Function: handleClick]} disabled={false} type=\\"button\\" className=\\"btn btn-primary\\">
+                                      Submit
+                                    </button>
+                                  </Button>
+                                  <p />
+                                  <a href=\\"http://localhost:3000/forgottenacc\\">
+                                    Forgotten account?
+                                  </a>
+                                </form>
+                              </Form>
+                            </div>
+                          </Col>
+                          <Col as=\\"div\\">
+                            <div className=\\"col\\" />
+                          </Col>
+                        </div>
+                      </Row>
+                    </Bootstrap(Row)>
+                  </div>
+                </Container>
+              </div>
+            </SignIn>
+          </component>
+        </Route>
+        <Route path=\\"/signup\\" component={[Function: SignUp]} />
+        <Route path=\\"/changepwd\\" component={[Function: ChangePwd]} />
+        <Route path=\\"/forgottenacc\\" component={[Function: ForgottenAcc]} />
+      </div>
+    </Router>
+  </BrowserRouter>
+</App>"
+`;

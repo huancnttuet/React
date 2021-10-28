@@ -1,29 +1,22 @@
 import React, {useState} from 'react';
 import {Form, Button, Col, Row, Container} from 'react-bootstrap'
 import axios from 'axios'
-import TopPage from './TopPage'
 
 function ForgottenAcc(props) {
   const emailFA = useFormInput('')
-
   const [stateFA, setStateFA] = useState('')
 
   function handleClick() {
-
-
       var data = {
         emailFA: emailFA.value,
       }
       axios.post('http://localhost:8000/forgottenacc', {data}).then( (res) => {
         setStateFA(res.data.message)
       })
-
   }
-
 
   return(
     <div>
-      <TopPage type='signin' />
       <Container>
         <Row style={{marginTop:50}}>
           <Col></Col>
@@ -35,12 +28,8 @@ function ForgottenAcc(props) {
                   <Form.Control type="email" placeholder="Enter email" />
                 </Form.Group>
               </Form.Row>
-
-
               <span>{stateFA}</span>
-
-
-              <Button variant="primary" onClick={handleClick}>
+              <Button variant="primary" id='fa-btn' onClick={handleClick}>
                 Submit
               </Button>
             </Form>
