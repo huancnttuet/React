@@ -1,16 +1,13 @@
 import React from 'react';
 import SignIn from './SignIn'
-import TopPage from './TopPage'
 import {useGlobal} from 'reactn'
 
-
 function Home(props) {
-  const [global, setGlobal] = useGlobal()
-  console.log(global);
-  if(global.state.authenticate){
+  const [state, setState] = useGlobal('state')
+  console.log(state);
+  if(state.authenticate === true || state.authenticate === 'true'){
     return(
       <div>
-        <TopPage type='logout' />
         MyHome
       </div>
       )
@@ -18,7 +15,6 @@ function Home(props) {
   else{
     return(
       <div>
-
         <SignIn />
       </div>
     )

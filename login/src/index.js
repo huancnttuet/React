@@ -1,4 +1,4 @@
-import React, {setGlobal, useDispatch, useReducer} from 'reactn';
+import React from 'reactn';
 import ReactDOM from 'react-dom';
 import './components/css/index.css';
 import App from './components/App';
@@ -8,7 +8,6 @@ import * as serviceWorker from './serviceWorker';
 if(localStorage.getItem("authenticate") === null || localStorage.getItem("id") === null){
   localStorage.setItem("authenticate",false)
   localStorage.setItem("id",0)
-
 }
 
 console.log(localStorage);
@@ -20,8 +19,9 @@ if (setupTime == null) {
     localStorage.setItem('setupTime', now)
 } else {
     if(now-setupTime > timeLimit) {
-        localStorage.clear()
-        localStorage.setItem('setupTime', now);
+      localStorage.setItem("authenticate",false)
+      localStorage.setItem("id",0)
+      localStorage.setItem('setupTime', now);
     }
 }
 

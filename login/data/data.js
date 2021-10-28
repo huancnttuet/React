@@ -32,7 +32,7 @@ module.exports = {
     //   return true
     // })
     // return checkSignUp;
-    var checkSignUp = await User.fillAll({
+    var checkSignUp = await User.findAll({
       attributes: ['email'],
       where: {
         email: emailSignUp,
