@@ -16,10 +16,11 @@ function SignIn(props) {
       pwdSignIn: pwd.value
     }
 
-    axios.post('http://localhost:8000/signin', {data}).then((res) => {
-      console.log(res.data.login);
-      if(res.data.login){
-        props.dispatch({type: 'LOGIN', payload: {id: res.data.id, level: res.data.level} })
+    axios.post('http://localhost:8080/users/signin', {data}).then((res) => {
+      console.log(res.data)
+      if (res.data.status === 'Success') {
+        let data = res.data
+        props.dispatch({type: 'LOGIN', payload: {id: data.id, level: data.level} })
       } else {
         setMessage(res.data.message)
       }

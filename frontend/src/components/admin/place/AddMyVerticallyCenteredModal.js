@@ -1,5 +1,6 @@
 import React,{useState} from 'react';
-import {Modal, Button} from 'react-bootstrap'
+import { Modal, Button } from 'react-bootstrap'
+
 import axios from 'axios'
 
 function AddMyVerticallyCenteredModal(props) {
@@ -15,12 +16,12 @@ function AddMyVerticallyCenteredModal(props) {
     const formData = new FormData()
     formData.append('foo', file)
     console.log(file);
-    axios.post("http://localhost:8000/uploadimg", formData,{
+    axios.post("http://localhost:8080/image/upload", formData,{
 
     }).then((req) => {
       console.log(req);
     })
-    axios.post("http://localhost:8000/insert", {data: choosed, table:'diadiem'}).then((req) => {
+    axios.post("http://localhost:8080/place/insert", {data: choosed}).then((req) => {
       console.log(req);
     })
     props.callbackFromParent({once: false})

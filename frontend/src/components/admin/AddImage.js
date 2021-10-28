@@ -10,11 +10,11 @@ function AddImage(props) {
   const [pathImg, setPathImg] = useState([])
   var arr = []
   if(!once){
-    axios.post('http://localhost:8000/createFolder', {id: id}).then((req) => {
+    axios.post(`${process.env.API}/createFolder`, {id: id}).then((req) => {
       console.log(req);
     })
     setOnce(true)
-    axios.post('http://localhost:8000/showImg', {id:id}).then((req) => {
+    axios.post(`${process.env.API}/showImg`, {id:id}).then((req) => {
       console.log(req.data);
       setPathImg(req.data.listImg)
     })
@@ -36,11 +36,11 @@ function AddImage(props) {
     }
     console.log(data);
     console.log(file);
-    axios.post('http://localhost:8000/pathImg', {path: arr, id: id}).then((req) => {
+    axios.post(`${process.env.API}/pathImg`, {path: arr, id: id}).then((req) => {
       console.log(req);
       setOnce(false)
     })
-    axios.post('http://localhost:8000/uploadimgs', data, {}).then((req) => {
+    axios.post(`${process.env.API}/uploadimgs`, data, {}).then((req) => {
       console.log(req);
       setOnce(false)
     })

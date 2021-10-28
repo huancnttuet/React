@@ -14,10 +14,11 @@ function TourManager(props) {
   const [pathImg, setPathImg] = useState([])
   var path = []
   if(!once ) {
-    axios.post('http://localhost:8000/getListTour',{id:id}).then((req) => {
-      console.log(req.data.list)
-      setList(req.data.list)
-      setDiadiem(req.data.list[0].diadiem)
+    axios.post('http://localhost:8080/tour/get-tour-list',{id:id}).then((req) => {
+      console.log(req.data)
+      let data = req.data.data
+       setList(data.list)
+       setDiadiem(data.place)
       setOnce(true)
     })
   }
@@ -57,11 +58,11 @@ function TourManager(props) {
                 console.log(pathImg[index]);
                 return(
                   <tr>
-                    <td>{value.id_tour}</td>
-                    <td>{value.tentour}</td>
-                    <td>{value.gia}</td>
-                    <td><a href={`/img/${value.id_tour}`}><img style={{width:'150px', height:'150px'}} src={value.path} /></a></td>
-                    <td style={{wordWrap: 'break-word', overflowWrap: 'break-word'}}>{value.lichtrinh}</td>
+                    <td>{value.id}</td>
+                    <td>{value.tour_name}</td>
+                    <td>{value.price}</td>
+                    <td><a href={`http://localhost:8080/img/${value.id_tour}`}><img style={{width:'150px', height:'150px'}} src={value.path} /></a></td>
+                    <td style={{wordWrap: 'break-word', overflowWrap: 'break-word'}}>{value.description}</td>
                     <td>
                       <Container>
                         <Row>

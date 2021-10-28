@@ -1,8 +1,7 @@
 const express = require('express')
 const user_route = express.Router()
-const service = require('../services/users')
 const userController = require('../controllers/user')
-user_route.get('/signin', userController.signin)
+user_route.post('/signin', userController.signin)
 
 user_route.post('/signup', async (req, res) => {
 	var usernameSignUp = req.body.data.usernameSignUp

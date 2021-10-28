@@ -6,7 +6,7 @@ class UserService {
   }
 
   async signin (username, password) {
-    return await this.model.findAll({attributes : ['username','level'], where: {password: password, username: username}})
+    return await this.model.findAll({attributes : ['id','level'], where: {password: password, username: username}})
   }
 }
 

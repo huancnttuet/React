@@ -18,7 +18,7 @@ function AddTour(props) {
   }
   function handleClick() {
     setShow(false)
-    axios.post("http://localhost:8000/insert", {data:{ id_diadiem: props.id, tentour: tentour.value, gia: gia.value, lichtrinh: lichtrinh.value}, table:'tour'}).then((req) => {
+    axios.post(`http://localhost:8080/tour/insert`, {data:{ id_diadiem: props.id, tentour: tentour.value, gia: gia.value, lichtrinh: lichtrinh.value}, table:'tour'}).then((req) => {
       console.log(req);
     })
     props.callback()
