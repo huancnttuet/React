@@ -3,58 +3,7 @@ const user_route = express.Router()
 const userController = require('../controllers/user')
 user_route.post('/signin', userController.signin)
 
-user_route.post('/signup', async (req, res) => {
-	var usernameSignUp = req.body.data.usernameSignUp
-	var emailSignUp = req.body.data.emailSignUp
-
-	const sendMail = (pwd) => {
-		var transporter = nodemailer.createTransport({
-			service: 'Gmail',
-			auth: {
-				user: 'huancnttuet@gmail.com',
-				pass: '341997mok'
-			}
-		})
-
-		var mailOptions = {
-			from: 'huancnttuet@gmail.com',
-			to: 'huancnttmta@gmail.com',
-			subject: 'Password demo',
-			text: `Yourpassword: ${pwd}`
-		}
-
-		transporter.sendMail(mailOptions, function (error, info) {
-			if (error) {
-				console.log(error)
-			} else {
-				console.log('Email sent: ' + info.response)
-			}
-		})
-	}
-	const createPwdSignUp = () => {
-		var length = 8,
-			charset =
-				'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789',
-			retVal = ''
-		for (var i = 0, n = charset.length; i < length; ++i) {
-			retVal += charset.charAt(Math.floor(Math.random() * n))
-		}
-		return retVal
-	}
-
-	if (await data.checkSignUp(emailSignUp, usernameSignUp)) {
-		var pwdSignUp = createPwdSignUp()
-
-		if (await data.createUser(emailSignUp, usernameSignUp, pwdSignUp)) {
-			res.json({ message: 'create new user success ' })
-			sendMail(pwdSignUp)
-		} else {
-			res.json({ message: 'error create new user' })
-		}
-	} else {
-		res.json({ message: 'user or mail exist' })
-	}
-})
+user_route.post('/signup', userController.signUp)
 
 user_route.post('/changepwd', async (req, res) => {
 	console.log(req.body.data)
