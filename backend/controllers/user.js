@@ -1,3 +1,4 @@
+const { checkIdPwd } = require('../../frontend/data/data')
 const { use } = require('../routes/user')
 const UserService = require('../services/users')
 const mailer = require('../utils/mailer')
@@ -9,10 +10,17 @@ exports.signin = async (req, res) => {
 	userService
 		.signin(username, password)
 		.then((userInfo) => {
-			return res.json({
-				status: 'Success',
-				data: userInfo[0]
-			})
+			if (userInfo[0]) {
+				return res.json({
+					status: 'Success',
+					data: userInfo[0]
+				})
+			} else {
+				return res.json({
+					status: 'Failed',
+					message: 'Username and password incorrect'
+				})
+			}
 		})
 		.catch((error) => {
 			return res.json({
@@ -35,7 +43,8 @@ exports.signUp = async (req, res) => {
 					.createUser(emailSignUp, usernameSignUp, pwdSignUp)
 					.then((newUser) => {
 						if (newUser) {
-							mailer.sendMail(password, function (error, info) {
+							console.log('-------------SENDMAIL------------')
+							mailer.sendMail(emailSignUp, pwdSignUp, function (error, info) {
 								if (error) {
 									console.log(error)
 									res.json({ status: 'Failed', message: error.message })
@@ -71,4 +80,59 @@ exports.signUp = async (req, res) => {
 				message: error.message
 			})
 		})
+}
+
+exports.changePwd = async (req, res) => {
+	const userService = new UserService(req)
+	console.log(req.body.data)
+	var id = req.body.data.id
+	var pwd = req.body.data.pwd
+	var pwdNew = req.body.data.pwdNew
+	try {
+		if (await userService.checkIdPwd(id, pwd)) {
+			if (await userService.changePwd(id, pwdNew)) {
+				res.json({ status: 'Success', result: true, message: 'OK' })
+			} else {
+				res.json({ status: 'Failed', result: false, message: 'Error!' })
+			}
+		} else {
+			res.json({
+				status: 'Failed',
+				result: false,
+				message: 'Password incorrect'
+			})
+		}
+	} catch (err) {
+		return res.json({
+			status: 'Failed',
+			message: err.message
+		})
+	}
+}
+
+exports.forgottenAccount = async (req, res) => {
+	const userService = new UserService(req)
+	var emailFA = req.body.data.emailFA
+	try {
+		var data = await userService.checkEmailFA(emailFA)
+	} catch (error) {
+		return res.json({
+			status: 'Failed',
+			message: error.message
+		})
+	}
+
+	if (data !== null) {
+		mailer.sendFAMail(emailFA, data, function (error, info) {
+			if (error) {
+				console.log(error)
+				res.json({ message: 'Lỗi trong quá trình gửi mail' })
+			} else {
+				console.log('Email sent: Quen pass ' + info.response)
+				res.json({ message: 'Pass đã được gửi lại về mail của bạn' })
+			}
+		})
+	} else {
+		res.json({ result: false, message: 'Mail chưa được đăng ký' })
+	}
 }

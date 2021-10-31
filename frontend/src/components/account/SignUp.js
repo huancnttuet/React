@@ -18,7 +18,8 @@ function SignUp(props) {
         emailSignUp: emailSignUp.value,
         usernameSignUp: usernameSignUp.value
       }
-      axios.post('http://localhost:8000/signup', {data}).then( (res) => {
+      axios.post('http://localhost:8080/users/signup', { data }).then((res) => {
+        console.log(res.data)
         setStateSignUp(res.data.message)
       })
     }

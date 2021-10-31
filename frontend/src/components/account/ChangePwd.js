@@ -29,7 +29,7 @@ function ChangePwd(props) {
             pwdNew: newPwd.value
           }
           console.log(data);
-          axios.post('http://localhost:8000/changepwd', {data}).then((res) => {
+          axios.post('http://localhost:8080/users/changepwd', {data}).then((res) => {
             console.log(res.data);
             setMessage(res.data.message)
           })

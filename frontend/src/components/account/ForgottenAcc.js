@@ -14,7 +14,7 @@ function ForgottenAcc(props) {
       var data = {
         emailFA: emailFA.value,
       }
-      axios.post('http://localhost:8000/forgottenacc', {data}).then( (res) => {
+      axios.post('http://localhost:8080/users/forgottenacc', {data}).then( (res) => {
         setStateFA(res.data.message)
       })
 
