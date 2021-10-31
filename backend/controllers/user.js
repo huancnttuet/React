@@ -56,7 +56,8 @@ exports.signUp = async (req, res) => {
 											username: usernameSignUp,
 											email: emailSignUp,
 											info: info.response
-										}
+										},
+										message: 'Mật khẩu đã được gửi về tài khoản của bạn'
 									})
 								}
 							})
@@ -126,13 +127,20 @@ exports.forgottenAccount = async (req, res) => {
 		mailer.sendFAMail(emailFA, data, function (error, info) {
 			if (error) {
 				console.log(error)
-				res.json({ message: 'Lỗi trong quá trình gửi mail' })
+				res.json({ status: 'Failed', message: 'Lỗi trong quá trình gửi mail' })
 			} else {
 				console.log('Email sent: Quen pass ' + info.response)
-				res.json({ message: 'Pass đã được gửi lại về mail của bạn' })
+				res.json({
+					status: 'Success',
+					message: 'Pass đã được gửi lại về mail của bạn'
+				})
 			}
 		})
 	} else {
-		res.json({ result: false, message: 'Mail chưa được đăng ký' })
+		res.json({
+			status: 'Failed',
+			result: false,
+			message: 'Mail chưa được đăng ký'
+		})
 	}
 }
