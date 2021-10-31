@@ -9,7 +9,7 @@ import {
 	Spinner
 } from 'react-bootstrap'
 import axios from 'axios'
-import TopPage from '../TopPage'
+import TopPage from '../../views/TopPage'
 import PopUp from '../utils/PopUp'
 
 function SignUp(props) {
@@ -76,7 +76,9 @@ function SignUp(props) {
 								</Form.Row>
 
 								{stateSignUp ? (
-									<Alert variant='warning'>{stateSignUp}</Alert>
+									<Alert variant='warning' style={{ fontSize: '14px' }}>
+										{stateSignUp}
+									</Alert>
 								) : (
 									''
 								)}

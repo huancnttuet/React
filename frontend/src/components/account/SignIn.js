@@ -75,12 +75,18 @@ function SignIn(props) {
 									<Button variant='primary' onClick={handleClick}>
 										Submit
 									</Button>
-									{message ? <Alert variant='warning'>{message}</Alert> : ''}
+									{message ? (
+										<Alert variant='warning' style={{ fontSize: '14px' }}>
+											{message}
+										</Alert>
+									) : (
+										''
+									)}
 									<PopUp
 										show={popUp}
 										onHide={() => setPopUp(false)}
-                      message={message}
-                      title='Đăng nhập thất bại'
+										message={message}
+										title='Đăng nhập thất bại'
 									/>
 									<a href='http://localhost:3000/forgottenacc'>
 										Forgotten account?

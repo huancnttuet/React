@@ -1,5 +1,5 @@
 import React from 'react';
-import Content from './tour/Content'
+import Content from '../components/tour/Content'
 
 import {connect} from 'react-redux'
 

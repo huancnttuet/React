@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import TopPage from '../TopPage'
+import TopPage from '../../views/TopPage'
 import {
 	Form,
 	Button,
@@ -91,7 +91,13 @@ function ChangePwd(props) {
 								<Button variant='primary' onClick={handleClick}>
 									Submit
 								</Button>
-								{message ? <Alert variant='warning'>{message}</Alert> : ''}
+								{message ? (
+									<Alert variant='warning' style={{ fontSize: '14px' }}>
+										{message}
+									</Alert>
+								) : (
+									''
+								)}
 								<PopUp
 									show={popUp}
 									onHide={() => setPopUp(false)}

@@ -9,7 +9,7 @@ import {
 	Alert
 } from 'react-bootstrap'
 import axios from 'axios'
-import TopPage from '../TopPage'
+import TopPage from '../../views/TopPage'
 import PopUp from '../utils/PopUp'
 
 function ForgottenAcc(props) {
@@ -57,7 +57,7 @@ function ForgottenAcc(props) {
 									</Form.Group>
 								</Form.Row>
 
-								{stateFA ? <Alert variant='warning'>{stateFA}</Alert> : ''}
+								{stateFA ? <Alert variant='warning' style={{ fontSize: '14px' }}>{stateFA}</Alert> : ''}
 								<PopUp
 									show={popUp}
 									onHide={() => setPopUp(false)}
