@@ -32,12 +32,15 @@
 
 import axios from 'axios'
 
+
 test('the data is peanut butter', () => {
-  const data = {
-    usernameSignIn: 'huan123',
-    pwdSignIn: 1
-  }
-  return axios.post('http://localhost:8000/signin',{data}).then(data => {
-    expect(data.data).toMatchObject({login:true});
-  });
-});
+	const data = {
+		usernameSignIn: 'test1234',
+		pwdSignIn: '123456'
+	}
+	return axios
+		.post('http://localhost:8080/users/signin', { data })
+		.then((data) => {
+			expect(data.data).toMatchObject({ status: 'Success' })
+		})
+})

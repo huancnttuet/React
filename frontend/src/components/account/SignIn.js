@@ -42,8 +42,8 @@ function SignIn(props) {
 
 	if (props.authenticate === true) {
 		return (
-			<div>
-				<h1>CHÀO MỪNG BẠN </h1>
+			<div id='main'>
+				<h1>CHÀO MỪNG BẠN</h1>
 			</div>
 		)
 	} else {
@@ -72,9 +72,14 @@ function SignIn(props) {
 									<Form.Group controlId='formBasicChecbox'>
 										<Form.Check type='checkbox' label='Check me out' />
 									</Form.Group>
-									<Button variant='primary' onClick={handleClick}>
+									<Button
+										id='submitBtn'
+										variant='primary'
+										onClick={handleClick}
+									>
 										Submit
 									</Button>
+									<div id='test'>test</div>
 									{message ? (
 										<Alert variant='warning' style={{ fontSize: '14px' }}>
 											{message}
