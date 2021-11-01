@@ -1,5 +1,4 @@
-const { checkIdPwd } = require('../../frontend/data/data')
-const { use } = require('../routes/user')
+
 const UserService = require('../services/users')
 const mailer = require('../utils/mailer')
 const pwdGenerator = require('../utils/pwd_generator')
