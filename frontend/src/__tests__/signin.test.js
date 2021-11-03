@@ -1,4 +1,4 @@
-import { driver } from './selenium'
+import { driver } from '../extensions/selenium'
 const { By, until } = require('selenium-webdriver')
 jest.setTimeout(30000)
 describe('UI Test Exmaple', () => {
@@ -7,22 +7,16 @@ describe('UI Test Exmaple', () => {
 		const username = driver.findElement(By.id('formBasicUsername'))
 		const pwd = driver.findElement(By.id('formBasicPassword'))
 		const submitBtn = driver.findElement(By.id('submitBtn'))
-
-		expect(await driver.findElement(By.id('test'))).toMatchObject(
-			'CHÀO MỪNG BẠN'
-		)
-		await username.sendKeys('test1234')
+		await username.sendKeys('admin')
 		await pwd.sendKeys('123456')
 		await submitBtn.click()
-		const elm = driver.findElement(By.id('test'))
-		elm.getText().then(function (text) {
-			expect(text).toMatch('text')
-		})
-		let root = driver
+
+		driver
 			.wait(until.elementLocated(By.id('main')), 5000)
 			.then(async (result) => {
-				let h1 = await result.getTagName('h1').getText()
+				let h1 = await result.getText()
 				expect(h1).toMatch('CHÀO MỪNG BẠN')
+				driver.close()
 			})
 	})
 })

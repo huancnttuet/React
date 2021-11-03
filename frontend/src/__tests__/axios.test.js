@@ -35,7 +35,7 @@ import axios from 'axios'
 
 test('the data is peanut butter', () => {
 	const data = {
-		usernameSignIn: 'test1234',
+		usernameSignIn: 'admin',
 		pwdSignIn: '123456'
 	}
 	return axios
