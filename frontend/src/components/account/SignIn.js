@@ -43,7 +43,7 @@ function SignIn(props) {
 	if (props.authenticate === true) {
 		return (
 			<div id='main'>
-				<h1>CHÀO MỪNG BẠN</h1>
+				<h1>WELCOME</h1>
 			</div>
 		)
 	} else {
@@ -79,7 +79,8 @@ function SignIn(props) {
 									>
 										Submit
 									</Button>
-									<div id='test'>test</div>
+									<div className='test1'>test</div>
+									<div className='test1'>test1</div>
 									{message ? (
 										<Alert variant='warning' style={{ fontSize: '14px' }}>
 											{message}
@@ -91,7 +92,7 @@ function SignIn(props) {
 										show={popUp}
 										onHide={() => setPopUp(false)}
 										message={message}
-										title='Đăng nhập thất bại'
+										title='Login failed'
 									/>
 									<a href='http://localhost:3000/forgottenacc'>
 										Forgotten account?

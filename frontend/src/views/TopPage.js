@@ -100,6 +100,7 @@ function TopPage(props) {
 								/>
 								<Nav.Link
 									href='http://localhost:3000/home'
+									id='logoutBtn'
 									onClick={() => props.dispatch({ type: 'LOGOUT' })}
 								>
 									Logout
