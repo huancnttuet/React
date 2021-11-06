@@ -6,12 +6,12 @@ var transporter = nodemailer.createTransport({
 		pass: '341997mok'
 	}
 })
-exports.sendMail = (email, pwd, callback) => {
+exports.sendMail = (email, username, pwd, callback) => {
 	var mailOptions = {
 		from: 'huanuet@gmail.com',
 		to: email,
 		subject: 'Password demo',
-		text: `Yourpassword: ${pwd}`
+		text: `Username: ${username}\nYourpassword: ${pwd}`
 	}
 	transporter.sendMail(mailOptions, callback)
 }

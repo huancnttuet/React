@@ -98,7 +98,7 @@ function SignUp(props) {
 									<Form.Check type='checkbox' label='Check me out' />
 								</Form.Group>
 
-								<Button variant='primary' onClick={handleClick}>
+								<Button id='submitBtn' variant='primary' onClick={handleClick}>
 									Submit
 								</Button>
 							</Form>

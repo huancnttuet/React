@@ -79,8 +79,6 @@ function SignIn(props) {
 									>
 										Submit
 									</Button>
-									<div className='test1'>test</div>
-									<div className='test1'>test1</div>
 									{message ? (
 										<Alert variant='warning' style={{ fontSize: '14px' }}>
 											{message}

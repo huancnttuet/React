@@ -43,7 +43,7 @@ exports.signUp = async (req, res) => {
 					.then((newUser) => {
 						if (newUser) {
 							console.log('-------------SENDMAIL------------')
-							mailer.sendMail(emailSignUp, pwdSignUp, function (error, info) {
+							mailer.sendMail(emailSignUp, usernameSignUp, pwdSignUp, function (error, info) {
 								if (error) {
 									console.log(error)
 									res.json({ status: 'Failed', message: error.message })
