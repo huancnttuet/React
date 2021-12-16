@@ -3,7 +3,7 @@ const { By, until } = require('selenium-webdriver')
 jest.setTimeout(30000)
 describe('Login page testing', () => {
 	it('Login success', async () => {
-		await driver.get('http://localhost:3000/signin')
+		await driver.get('http://localhost:3003/signin')
 		const usernameElement = driver.findElement(By.id('formBasicUsername'))
 		const pwdElement = driver.findElement(By.id('formBasicPassword'))
 		const submitBtn = driver.findElement(By.id('submitBtn'))
@@ -16,7 +16,7 @@ describe('Login page testing', () => {
 	})
 
 	it('Login fail', async () => {
-		driver.get('http://localhost:3000/signin')
+		driver.get('http://localhost:3003/signin')
 		const username = driver.findElement(By.id('formBasicUsername'))
 		const pwd = driver.findElement(By.id('formBasicPassword'))
 		const submitBtn = driver.findElement(By.id('submitBtn'))

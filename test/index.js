@@ -1,5 +1,5 @@
 const chrome = require('selenium-webdriver/chrome')
-const { Builder, By, until } = require('selenium-webdriver')
+const { Builder, By, Key, until } = require('selenium-webdriver')
 const serviceBuilder = new chrome.ServiceBuilder(
 	// './chromedriver_win32/chromedriver.exe'
 	__dirname + '/chromedriver_win32/chromedriver'
@@ -54,14 +54,14 @@ function makeid(length) {
 }
 
 var signup = async () => {
-	driver.get('http://localhost:3003/signup')
-	const mail = driver.findElement(By.id('emailSignUp'))
-	const username = driver.findElement(By.id('usernameSignUp'))
-	const submitBtn = driver.findElement(By.id('submitBtn'))
-	const user = makeid(6)
-	await mail.sendKeys('huantest65@gmail.com')
-	await username.sendKeys(user)
-	await submitBtn.click()
+	// driver.get('http://localhost:3003/signup')
+	// const mail = driver.findElement(By.id('emailSignUp'))
+	// const username = driver.findElement(By.id('usernameSignUp'))
+	// const submitBtn = driver.findElement(By.id('submitBtn'))
+	// const user = makeid(6)
+	// await mail.sendKeys('huantest65@gmail.com')
+	// await username.sendKeys(user)
+	// await submitBtn.click()
 	// await driver.executeScript('window.open("newURL");')
 
 	gmailProcess()
@@ -84,17 +84,35 @@ const gmailProcess = async () => {
 
 			await driver.findElement(By.id('passwordNext')).click()
 		}, 5000)
-		var usernameSignUp= ''
+		var usernameSignUp = ''
+
+		// setTimeout(async () => {
+		// 	let text = await driver.findElement(By.id(':2l')).getText()
+		// 	let array = text.split('\n')[1].split(' ')
+		// 	usernameSignUp = array[1]
+		// }, 10000)
+
+		// console.log(usernameSignUp)
 
 		setTimeout(async () => {
-			let text = await driver.findElement(By.id(':2l')).getText()
-			let array = text.split('\n')[1].split(' ')
-			usernameSignUp = array[1] 
+			let sendMailBtn = await driver
+				.findElement(By.className('T-I T-I-KE L3'))
+				.click()
+			let receiver = await driver
+				.findElement(By.className('vO'))
+				.sendKeys('huancnttuet@gmail.com')
+			let aoT = await driver
+				.findElement(By.className('aoT'))
+				.sendKeys('Kiểm thử và đảm bảo chất lượng phần mềm')
+			let content = await driver.findElement(
+				By.className('Am Al editable LW-avf tS-tW')
+			)
+			await content.sendKeys('Hello World')
+			await content.sendKeys(Key.CONTROL, Key.ENTER)
 		}, 10000)
-		
 
+		console.log(usernameSignUp)
 	} catch (error) {}
 }
-
 
 signup()
